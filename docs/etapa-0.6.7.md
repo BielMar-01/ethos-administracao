@@ -132,7 +132,13 @@ Commit da entrega:
 feat(web): conclui etapa 0.6.7 com refinamento visual premium e UX
 ```
 
-A publicação utiliza `git push origin main`, sem force push ou alteração do remoto. O resultado é conferido comparando HEAD com `git ls-remote origin refs/heads/main`. O hash completo e o resultado efetivo da publicação constam no relatório final da execução; o próprio commit deste documento é identificado por `git log -1`.
+A publicação do commit de implementação foi concluída com `git push origin main`, sem force push ou alteração do remoto. A consulta `git ls-remote origin refs/heads/main` confirmou o mesmo hash local e remoto:
+
+```text
+1f443cd325e178c4c40a85a53cff2a842e822580
+```
+
+O working tree estava limpo e `main` sincronizada com `origin/main` após a publicação. Este registro do resultado foi acrescentado em um commit posterior apenas de documentação, sem reescrever o commit de implementação. A confirmação do HEAD final é apresentada no relatório final da execução e pode ser reproduzida com `git log -1`, `git status --short` e `git ls-remote origin refs/heads/main`.
 
 ## Execução e pendências
 
