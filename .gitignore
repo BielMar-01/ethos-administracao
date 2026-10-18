@@ -36,3 +36,4 @@ Thumbs.db
 *.tmp
 *.temp
 *.tsbuildinfo
+**/.git-backup-web/
