@@ -37,3 +37,6 @@ Thumbs.db
 *.temp
 *.tsbuildinfo
 **/.git-backup-web/
+**/.git-backup-web
+**/.git-backup-*
+apps/web/next-env.d.ts
