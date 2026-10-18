@@ -1,0 +1,38 @@
+
+# Dependencies
+node_modules/
+.pnpm-store/
+.turbo/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Prisma
+apps/api/generated/
+
+# IDE
+.vscode/
+.idea/
+
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.tsbuildinfo
