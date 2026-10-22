@@ -1,0 +1,46 @@
+{
+  "name": "@ethos/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/server-only.js",
+      "node": "./dist/index.js",
+      "default": "./dist/server-only.js"
+    }
+  },
+  "files": [
+    "dist",
+    "certs"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "db:generate": "node scripts/prisma.mjs generate",
+    "db:validate": "node scripts/prisma.mjs validate",
+    "db:migrate": "node scripts/prisma.mjs migrate dev",
+    "db:deploy": "node scripts/prisma.mjs migrate deploy",
+    "db:status": "node scripts/prisma.mjs migrate status",
+    "db:check": "node scripts/check.mjs",
+    "typecheck": "pnpm run db:generate && tsc --noEmit",
+    "build": "pnpm run db:generate && tsc",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "dotenv": "^18.0.8",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
+    "prisma": "7.10.1",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,2 @@
+# Checksums das migrations devem ser idênticos em Windows e Linux.
+prisma/migrations/**/migration.sql text eol=lf

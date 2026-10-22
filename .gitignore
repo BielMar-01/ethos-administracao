@@ -23,6 +23,7 @@ pnpm-debug.log*
 
 # Prisma
 apps/api/generated/
+packages/database/src/generated/
 
 # IDE
 .vscode/

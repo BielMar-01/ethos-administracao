@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas = ["ethos_technical"]
+}
+
+/// Estrutura técnica; não representa uma entidade de negócio.
+model InfrastructureCheck {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@map("infrastructure_checks")
+  @@schema("ethos_technical")
+}
