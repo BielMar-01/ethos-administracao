@@ -27,6 +27,7 @@
     "db:deploy": "node scripts/prisma.mjs migrate deploy",
     "db:status": "node scripts/prisma.mjs migrate status",
     "db:check": "node scripts/check.mjs",
+    "db:test:integration": "node scripts/integration.mjs --report && node scripts/context-integration.mjs --report",
     "typecheck": "pnpm run db:generate && tsc --noEmit",
     "build": "pnpm run db:generate && tsc",
     "test": "node --test tests/*.test.mjs"

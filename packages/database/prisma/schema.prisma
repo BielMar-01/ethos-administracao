@@ -1,13 +1,13 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
-  moduleFormat = "esm"
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
   importFileExtension = "js"
 }
 
 datasource db {
   provider = "postgresql"
-  schemas = ["ethos_technical"]
+  schemas  = ["ethos_technical", "ethos"]
 }
 
 /// Estrutura técnica; não representa uma entidade de negócio.
@@ -17,4 +17,893 @@ model InfrastructureCheck {
 
   @@map("infrastructure_checks")
   @@schema("ethos_technical")
+}
+
+enum OrganizationStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+
+  @@schema("ethos")
+}
+
+enum MembershipStatus {
+  INVITED
+  ACTIVE
+  SUSPENDED
+  REVOKED
+
+  @@schema("ethos")
+}
+
+enum PersonKind {
+  INDIVIDUAL
+  COMPANY
+
+  @@schema("ethos")
+}
+
+enum PropertyKind {
+  RESIDENTIAL
+  COMMERCIAL
+  MIXED
+  LAND
+
+  @@schema("ethos")
+}
+
+enum LeaseStatus {
+  DRAFT
+  ACTIVE
+  ENDED
+  CANCELLED
+
+  @@schema("ethos")
+}
+
+enum LeasePartyRole {
+  PRIMARY
+  CO_RESPONSIBLE
+  OCCUPANT
+
+  @@schema("ethos")
+}
+
+enum ContractStatus {
+  DRAFT
+  SIGNED
+  TERMINATED
+
+  @@schema("ethos")
+}
+
+enum ChangeStatus {
+  PROPOSED
+  APPROVED
+  APPLIED
+  CANCELLED
+
+  @@schema("ethos")
+}
+
+enum ChargeKind {
+  RENT
+  CONDOMINIUM
+  TAX
+  UTILITY
+  PENALTY
+  OTHER
+
+  @@schema("ethos")
+}
+
+enum ChargeStatus {
+  DRAFT
+  ISSUED
+  CANCELLED
+
+  @@schema("ethos")
+}
+
+enum PaymentMethod {
+  PIX
+  BANK_TRANSFER
+  BANK_SLIP
+  CASH
+  CARD
+  OTHER
+
+  @@schema("ethos")
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  REVERSED
+
+  @@schema("ethos")
+}
+
+enum ReceiptStatus {
+  ISSUED
+  VOIDED
+
+  @@schema("ethos")
+}
+
+enum InspectionKind {
+  ENTRY
+  EXIT
+  PERIODIC
+
+  @@schema("ethos")
+}
+
+enum ReportStatus {
+  DRAFT
+  FINAL
+
+  @@schema("ethos")
+}
+
+enum DocumentKind {
+  PHOTO
+  CONTRACT
+  RECEIPT
+  REPORT
+  IDENTITY
+  OTHER
+
+  @@schema("ethos")
+}
+
+enum MaintenanceStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+
+  @@schema("ethos")
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+
+  @@schema("ethos")
+}
+
+enum NotificationKind {
+  BILLING
+  CONTRACT
+  MAINTENANCE
+  SYSTEM
+
+  @@schema("ethos")
+}
+
+enum PlatformRole {
+  SUPER_ADMIN
+
+  @@schema("ethos")
+}
+
+model Organization {
+  id                      String                   @id @default(uuid()) @db.Uuid
+  createdAt               DateTime                 @default(now()) @db.Timestamptz(3)
+  name                    String                   @db.VarChar(200)
+  slug                    String                   @unique @db.VarChar(100)
+  status                  OrganizationStatus       @default(ACTIVE)
+  archivedAt              DateTime?                @db.Timestamptz(3)
+  organizationSettingss   OrganizationSettings[]
+  organizationMemberships OrganizationMembership[]
+  roles                   Role[]
+  membershipRoles         MembershipRole[]
+  rolePermissions         RolePermission[]
+  owners                  Owner[]
+  tenants                 Tenant[]
+  propertys               Property[]
+  propertyUnits           PropertyUnit[]
+  propertyOwnerships      PropertyOwnership[]
+  leases                  Lease[]
+  leaseTenants            LeaseTenant[]
+  contracts               Contract[]
+  contractVersions        ContractVersion[]
+  leaseRenewals           LeaseRenewal[]
+  rentAdjustments         RentAdjustment[]
+  charges                 Charge[]
+  installments            Installment[]
+  payments                Payment[]
+  paymentAllocations      PaymentAllocation[]
+  receipts                Receipt[]
+  inspections             Inspection[]
+  inspectionReports       InspectionReport[]
+  maintenanceRequests     MaintenanceRequest[]
+  documents               Document[]
+  photos                  Photo[]
+  notifications           Notification[]
+  auditLogs               AuditLog[]
+
+  @@schema("ethos")
+}
+
+model User {
+  id                                String                   @id @default(uuid()) @db.Uuid
+  createdAt                         DateTime                 @default(now()) @db.Timestamptz(3)
+  email                             String                   @unique @db.VarChar(320)
+  displayName                       String                   @db.VarChar(200)
+  disabledAt                        DateTime?                @db.Timestamptz(3)
+  externalIdentity_user             ExternalIdentity[]       @relation("ExternalIdentity_user")
+  platformAccessGrant_user          PlatformAccessGrant[]    @relation("PlatformAccessGrant_user")
+  platformAccessGrant_grantedByUser PlatformAccessGrant[]    @relation("PlatformAccessGrant_grantedByUser")
+  platformAuditLog_actorUser        PlatformAuditLog[]       @relation("PlatformAuditLog_actorUser")
+  platformAuditLog_targetUser       PlatformAuditLog[]       @relation("PlatformAuditLog_targetUser")
+  organizationMembership_user       OrganizationMembership[] @relation("OrganizationMembership_user")
+
+  @@schema("ethos")
+}
+
+model ExternalIdentity {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  userId    String   @db.Uuid
+  provider  String   @db.VarChar(80)
+  subject   String   @db.VarChar(255)
+  user      User     @relation("ExternalIdentity_user", fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([provider, subject])
+  @@index([userId])
+  @@schema("ethos")
+}
+
+model Permission {
+  id                        String           @id @default(uuid()) @db.Uuid
+  createdAt                 DateTime         @default(now()) @db.Timestamptz(3)
+  code                      String           @unique @db.VarChar(120)
+  description               String
+  rolePermission_permission RolePermission[] @relation("RolePermission_permission")
+
+  @@schema("ethos")
+}
+
+model PlatformAccessGrant {
+  id              String       @id @default(uuid()) @db.Uuid
+  createdAt       DateTime     @default(now()) @db.Timestamptz(3)
+  userId          String       @db.Uuid
+  role            PlatformRole
+  grantedByUserId String?      @db.Uuid
+  revokedAt       DateTime?    @db.Timestamptz(3)
+  reason          String
+  user            User         @relation("PlatformAccessGrant_user", fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  grantedByUser   User?        @relation("PlatformAccessGrant_grantedByUser", fields: [grantedByUserId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@index([userId])
+  @@index([grantedByUserId])
+  @@schema("ethos")
+}
+
+model PlatformAuditLog {
+  id           String   @id @default(uuid()) @db.Uuid
+  createdAt    DateTime @default(now()) @db.Timestamptz(3)
+  actorUserId  String?  @db.Uuid
+  targetUserId String?  @db.Uuid
+  action       String   @db.VarChar(80)
+  reason       String
+  databaseRole String   @db.VarChar(100)
+  actorUser    User?    @relation("PlatformAuditLog_actorUser", fields: [actorUserId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  targetUser   User?    @relation("PlatformAuditLog_targetUser", fields: [targetUserId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@index([actorUserId])
+  @@index([targetUserId])
+  @@schema("ethos")
+}
+
+model OrganizationSettings {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  timezone       String       @default("America/Sao_Paulo") @db.VarChar(80)
+  currency       String       @default("BRL") @db.Char(3)
+  preferences    Json         @default("{}")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId])
+  @@schema("ethos")
+}
+
+model OrganizationMembership {
+  id                                    String               @id @default(uuid()) @db.Uuid
+  organizationId                        String               @db.Uuid
+  createdAt                             DateTime             @default(now()) @db.Timestamptz(3)
+  userId                                String               @db.Uuid
+  status                                MembershipStatus     @default(INVITED)
+  joinedAt                              DateTime?            @db.Timestamptz(3)
+  revokedAt                             DateTime?            @db.Timestamptz(3)
+  organization                          Organization         @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user                                  User                 @relation("OrganizationMembership_user", fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  membershipRole_membership             MembershipRole[]     @relation("MembershipRole_membership")
+  inspection_responsibleMembership      Inspection[]         @relation("Inspection_responsibleMembership")
+  maintenanceRequest_assignedMembership MaintenanceRequest[] @relation("MaintenanceRequest_assignedMembership")
+  notification_recipientMembership      Notification[]       @relation("Notification_recipientMembership")
+  auditLog_actorMembership              AuditLog[]           @relation("AuditLog_actorMembership")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, userId])
+  @@index([userId])
+  @@index([organizationId, status])
+  @@schema("ethos")
+}
+
+model Role {
+  id                  String           @id @default(uuid()) @db.Uuid
+  organizationId      String           @db.Uuid
+  createdAt           DateTime         @default(now()) @db.Timestamptz(3)
+  code                String           @db.VarChar(80)
+  name                String           @db.VarChar(120)
+  archivedAt          DateTime?        @db.Timestamptz(3)
+  organization        Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  membershipRole_role MembershipRole[] @relation("MembershipRole_role")
+  rolePermission_role RolePermission[] @relation("RolePermission_role")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@schema("ethos")
+}
+
+model MembershipRole {
+  id             String                 @id @default(uuid()) @db.Uuid
+  organizationId String                 @db.Uuid
+  createdAt      DateTime               @default(now()) @db.Timestamptz(3)
+  membershipId   String                 @db.Uuid
+  roleId         String                 @db.Uuid
+  revokedAt      DateTime?              @db.Timestamptz(3)
+  organization   Organization           @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  membership     OrganizationMembership @relation("MembershipRole_membership", fields: [organizationId, membershipId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  role           Role                   @relation("MembershipRole_role", fields: [organizationId, roleId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, membershipId, roleId])
+  @@index([organizationId, roleId])
+  @@index([organizationId, membershipId])
+  @@schema("ethos")
+}
+
+model RolePermission {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  roleId         String       @db.Uuid
+  permissionId   String       @db.Uuid
+  revokedAt      DateTime?    @db.Timestamptz(3)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  role           Role         @relation("RolePermission_role", fields: [organizationId, roleId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  permission     Permission   @relation("RolePermission_permission", fields: [permissionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, roleId, permissionId])
+  @@index([permissionId])
+  @@index([organizationId, roleId])
+  @@schema("ethos")
+}
+
+model Owner {
+  id                      String              @id @default(uuid()) @db.Uuid
+  organizationId          String              @db.Uuid
+  createdAt               DateTime            @default(now()) @db.Timestamptz(3)
+  name                    String              @db.VarChar(200)
+  kind                    PersonKind          @default(INDIVIDUAL)
+  email                   String?             @db.VarChar(320)
+  phone                   String?             @db.VarChar(40)
+  taxIdentifier           String?             @db.VarChar(30)
+  archivedAt              DateTime?           @db.Timestamptz(3)
+  organization            Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  propertyOwnership_owner PropertyOwnership[] @relation("PropertyOwnership_owner")
+  document_owner          Document[]          @relation("Document_owner")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, taxIdentifier])
+  @@index([organizationId, name])
+  @@schema("ethos")
+}
+
+model Tenant {
+  id                 String        @id @default(uuid()) @db.Uuid
+  organizationId     String        @db.Uuid
+  createdAt          DateTime      @default(now()) @db.Timestamptz(3)
+  name               String        @db.VarChar(200)
+  kind               PersonKind    @default(INDIVIDUAL)
+  email              String?       @db.VarChar(320)
+  phone              String?       @db.VarChar(40)
+  taxIdentifier      String?       @db.VarChar(30)
+  archivedAt         DateTime?     @db.Timestamptz(3)
+  organization       Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  leaseTenant_tenant LeaseTenant[] @relation("LeaseTenant_tenant")
+  document_tenant    Document[]    @relation("Document_tenant")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, taxIdentifier])
+  @@index([organizationId, name])
+  @@schema("ethos")
+}
+
+model Property {
+  id                         String              @id @default(uuid()) @db.Uuid
+  organizationId             String              @db.Uuid
+  createdAt                  DateTime            @default(now()) @db.Timestamptz(3)
+  code                       String              @db.VarChar(80)
+  name                       String              @db.VarChar(200)
+  kind                       PropertyKind
+  address                    Json
+  archivedAt                 DateTime?           @db.Timestamptz(3)
+  organization               Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  propertyUnit_property      PropertyUnit[]      @relation("PropertyUnit_property")
+  propertyOwnership_property PropertyOwnership[] @relation("PropertyOwnership_property")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@schema("ethos")
+}
+
+model PropertyUnit {
+  id                      String               @id @default(uuid()) @db.Uuid
+  organizationId          String               @db.Uuid
+  createdAt               DateTime             @default(now()) @db.Timestamptz(3)
+  propertyId              String               @db.Uuid
+  code                    String               @db.VarChar(80)
+  name                    String               @db.VarChar(200)
+  isMain                  Boolean              @default(false)
+  area                    Decimal?             @db.Decimal(12, 2)
+  archivedAt              DateTime?            @db.Timestamptz(3)
+  organization            Organization         @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  property                Property             @relation("PropertyUnit_property", fields: [organizationId, propertyId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  lease_unit              Lease[]              @relation("Lease_unit")
+  inspection_unit         Inspection[]         @relation("Inspection_unit")
+  maintenanceRequest_unit MaintenanceRequest[] @relation("MaintenanceRequest_unit")
+  document_unit           Document[]           @relation("Document_unit")
+  photo_unit              Photo[]              @relation("Photo_unit")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, propertyId, code])
+  @@index([organizationId, propertyId])
+  @@schema("ethos")
+}
+
+model PropertyOwnership {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  propertyId     String       @db.Uuid
+  ownerId        String       @db.Uuid
+  percentage     Decimal      @db.Decimal(7, 4)
+  startsOn       DateTime     @db.Date
+  endsOn         DateTime?    @db.Date
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  property       Property     @relation("PropertyOwnership_property", fields: [organizationId, propertyId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  owner          Owner        @relation("PropertyOwnership_owner", fields: [organizationId, ownerId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, propertyId, ownerId, startsOn])
+  @@index([organizationId, ownerId])
+  @@index([organizationId, propertyId])
+  @@schema("ethos")
+}
+
+model Lease {
+  id                          String               @id @default(uuid()) @db.Uuid
+  organizationId              String               @db.Uuid
+  createdAt                   DateTime             @default(now()) @db.Timestamptz(3)
+  unitId                      String               @db.Uuid
+  code                        String               @db.VarChar(80)
+  status                      LeaseStatus          @default(DRAFT)
+  startsOn                    DateTime             @db.Date
+  endsOn                      DateTime?            @db.Date
+  baseRent                    Decimal              @db.Decimal(18, 2)
+  currency                    String               @default("BRL") @db.Char(3)
+  dueDay                      Int
+  endedAt                     DateTime?            @db.Timestamptz(3)
+  organization                Organization         @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  unit                        PropertyUnit         @relation("Lease_unit", fields: [organizationId, unitId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  leaseTenant_lease           LeaseTenant[]        @relation("LeaseTenant_lease")
+  contract_lease              Contract[]           @relation("Contract_lease")
+  leaseRenewal_lease          LeaseRenewal[]       @relation("LeaseRenewal_lease")
+  leaseRenewal_successorLease LeaseRenewal[]       @relation("LeaseRenewal_successorLease")
+  rentAdjustment_lease        RentAdjustment[]     @relation("RentAdjustment_lease")
+  charge_lease                Charge[]             @relation("Charge_lease")
+  payment_lease               Payment[]            @relation("Payment_lease")
+  inspection_lease            Inspection[]         @relation("Inspection_lease")
+  maintenanceRequest_lease    MaintenanceRequest[] @relation("MaintenanceRequest_lease")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@index([organizationId, unitId, status])
+  @@index([organizationId, status, endsOn])
+  @@index([organizationId, unitId])
+  @@schema("ethos")
+}
+
+model LeaseTenant {
+  id             String         @id @default(uuid()) @db.Uuid
+  organizationId String         @db.Uuid
+  createdAt      DateTime       @default(now()) @db.Timestamptz(3)
+  leaseId        String         @db.Uuid
+  tenantId       String         @db.Uuid
+  role           LeasePartyRole
+  startsOn       DateTime       @db.Date
+  endsOn         DateTime?      @db.Date
+  organization   Organization   @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease          Lease          @relation("LeaseTenant_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  tenant         Tenant         @relation("LeaseTenant_tenant", fields: [organizationId, tenantId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, leaseId, tenantId, startsOn])
+  @@index([organizationId, tenantId])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model Contract {
+  id                       String            @id @default(uuid()) @db.Uuid
+  organizationId           String            @db.Uuid
+  createdAt                DateTime          @default(now()) @db.Timestamptz(3)
+  leaseId                  String            @db.Uuid
+  code                     String            @db.VarChar(80)
+  status                   ContractStatus    @default(DRAFT)
+  organization             Organization      @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease                    Lease             @relation("Contract_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  contractVersion_contract ContractVersion[] @relation("ContractVersion_contract")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model ContractVersion {
+  id                       String       @id @default(uuid()) @db.Uuid
+  organizationId           String       @db.Uuid
+  createdAt                DateTime     @default(now()) @db.Timestamptz(3)
+  contractId               String       @db.Uuid
+  version                  Int
+  content                  Json
+  contentHash              String       @db.Char(64)
+  validFrom                DateTime     @db.Date
+  signedAt                 DateTime?    @db.Timestamptz(3)
+  organization             Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  contract                 Contract     @relation("ContractVersion_contract", fields: [organizationId, contractId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  document_contractVersion Document[]   @relation("Document_contractVersion")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, contractId, version])
+  @@index([organizationId, contractId])
+  @@schema("ethos")
+}
+
+model LeaseRenewal {
+  id               String       @id @default(uuid()) @db.Uuid
+  organizationId   String       @db.Uuid
+  createdAt        DateTime     @default(now()) @db.Timestamptz(3)
+  leaseId          String       @db.Uuid
+  successorLeaseId String?      @db.Uuid
+  startsOn         DateTime     @db.Date
+  endsOn           DateTime?    @db.Date
+  newRent          Decimal      @db.Decimal(18, 2)
+  status           ChangeStatus @default(PROPOSED)
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease            Lease        @relation("LeaseRenewal_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  successorLease   Lease?       @relation("LeaseRenewal_successorLease", fields: [organizationId, successorLeaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@index([organizationId, leaseId, startsOn])
+  @@index([organizationId, successorLeaseId])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model RentAdjustment {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  leaseId        String       @db.Uuid
+  effectiveOn    DateTime     @db.Date
+  previousRent   Decimal      @db.Decimal(18, 2)
+  newRent        Decimal      @db.Decimal(18, 2)
+  percentage     Decimal      @db.Decimal(9, 4)
+  indexName      String?      @db.VarChar(80)
+  status         ChangeStatus @default(PROPOSED)
+  appliedAt      DateTime?    @db.Timestamptz(3)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease          Lease        @relation("RentAdjustment_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, leaseId, effectiveOn])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model Charge {
+  id                 String        @id @default(uuid()) @db.Uuid
+  organizationId     String        @db.Uuid
+  createdAt          DateTime      @default(now()) @db.Timestamptz(3)
+  leaseId            String        @db.Uuid
+  code               String        @db.VarChar(80)
+  kind               ChargeKind
+  competence         DateTime      @db.Date
+  amount             Decimal       @db.Decimal(18, 2)
+  status             ChargeStatus  @default(DRAFT)
+  organization       Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease              Lease         @relation("Charge_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  installment_charge Installment[] @relation("Installment_charge")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@index([organizationId, leaseId, competence])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model Installment {
+  id                            String              @id @default(uuid()) @db.Uuid
+  organizationId                String              @db.Uuid
+  createdAt                     DateTime            @default(now()) @db.Timestamptz(3)
+  chargeId                      String              @db.Uuid
+  number                        Int
+  dueOn                         DateTime            @db.Date
+  amount                        Decimal             @db.Decimal(18, 2)
+  organization                  Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  charge                        Charge              @relation("Installment_charge", fields: [organizationId, chargeId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  paymentAllocation_installment PaymentAllocation[] @relation("PaymentAllocation_installment")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, chargeId, number])
+  @@index([organizationId, dueOn])
+  @@index([organizationId, chargeId])
+  @@schema("ethos")
+}
+
+model Payment {
+  id                        String              @id @default(uuid()) @db.Uuid
+  organizationId            String              @db.Uuid
+  createdAt                 DateTime            @default(now()) @db.Timestamptz(3)
+  leaseId                   String              @db.Uuid
+  code                      String              @db.VarChar(80)
+  amount                    Decimal             @db.Decimal(18, 2)
+  method                    PaymentMethod
+  status                    PaymentStatus       @default(PENDING)
+  paidAt                    DateTime            @db.Timestamptz(3)
+  reversedAt                DateTime?           @db.Timestamptz(3)
+  externalReference         String?             @db.VarChar(255)
+  organization              Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  lease                     Lease               @relation("Payment_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  paymentAllocation_payment PaymentAllocation[] @relation("PaymentAllocation_payment")
+  receipt_payment           Receipt[]           @relation("Receipt_payment")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, code])
+  @@unique([organizationId, externalReference])
+  @@index([organizationId, leaseId, paidAt])
+  @@index([organizationId, leaseId])
+  @@schema("ethos")
+}
+
+model PaymentAllocation {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  paymentId      String       @db.Uuid
+  installmentId  String       @db.Uuid
+  amount         Decimal      @db.Decimal(18, 2)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  payment        Payment      @relation("PaymentAllocation_payment", fields: [organizationId, paymentId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  installment    Installment  @relation("PaymentAllocation_installment", fields: [organizationId, installmentId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, paymentId, installmentId])
+  @@index([organizationId, installmentId])
+  @@index([organizationId, paymentId])
+  @@schema("ethos")
+}
+
+model Receipt {
+  id               String        @id @default(uuid()) @db.Uuid
+  organizationId   String        @db.Uuid
+  createdAt        DateTime      @default(now()) @db.Timestamptz(3)
+  paymentId        String        @db.Uuid
+  number           String        @db.VarChar(80)
+  status           ReceiptStatus @default(ISSUED)
+  issuedAt         DateTime      @db.Timestamptz(3)
+  snapshot         Json
+  voidedAt         DateTime?     @db.Timestamptz(3)
+  voidReason       String?
+  organization     Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  payment          Payment       @relation("Receipt_payment", fields: [organizationId, paymentId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  document_receipt Document[]    @relation("Document_receipt")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, number])
+  @@index([organizationId, paymentId])
+  @@schema("ethos")
+}
+
+model Inspection {
+  id                          String                  @id @default(uuid()) @db.Uuid
+  organizationId              String                  @db.Uuid
+  createdAt                   DateTime                @default(now()) @db.Timestamptz(3)
+  unitId                      String                  @db.Uuid
+  leaseId                     String?                 @db.Uuid
+  responsibleMembershipId     String?                 @db.Uuid
+  kind                        InspectionKind
+  scheduledAt                 DateTime                @db.Timestamptz(3)
+  completedAt                 DateTime?               @db.Timestamptz(3)
+  organization                Organization            @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  unit                        PropertyUnit            @relation("Inspection_unit", fields: [organizationId, unitId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  lease                       Lease?                  @relation("Inspection_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  responsibleMembership       OrganizationMembership? @relation("Inspection_responsibleMembership", fields: [organizationId, responsibleMembershipId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  inspectionReport_inspection InspectionReport[]      @relation("InspectionReport_inspection")
+  photo_inspection            Photo[]                 @relation("Photo_inspection")
+
+  @@unique([organizationId, id])
+  @@index([organizationId, unitId, scheduledAt])
+  @@index([organizationId, leaseId])
+  @@index([organizationId, responsibleMembershipId])
+  @@index([organizationId, unitId])
+  @@schema("ethos")
+}
+
+model InspectionReport {
+  id                        String       @id @default(uuid()) @db.Uuid
+  organizationId            String       @db.Uuid
+  createdAt                 DateTime     @default(now()) @db.Timestamptz(3)
+  inspectionId              String       @db.Uuid
+  version                   Int
+  status                    ReportStatus @default(DRAFT)
+  content                   Json
+  finalizedAt               DateTime?    @db.Timestamptz(3)
+  organization              Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  inspection                Inspection   @relation("InspectionReport_inspection", fields: [organizationId, inspectionId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  document_inspectionReport Document[]   @relation("Document_inspectionReport")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, inspectionId, version])
+  @@index([organizationId, inspectionId])
+  @@schema("ethos")
+}
+
+model MaintenanceRequest {
+  id                          String                  @id @default(uuid()) @db.Uuid
+  organizationId              String                  @db.Uuid
+  createdAt                   DateTime                @default(now()) @db.Timestamptz(3)
+  unitId                      String                  @db.Uuid
+  leaseId                     String?                 @db.Uuid
+  assignedMembershipId        String?                 @db.Uuid
+  title                       String                  @db.VarChar(200)
+  description                 String
+  category                    String                  @db.VarChar(80)
+  status                      MaintenanceStatus       @default(OPEN)
+  priority                    Priority                @default(NORMAL)
+  estimatedCost               Decimal?                @db.Decimal(18, 2)
+  actualCost                  Decimal?                @db.Decimal(18, 2)
+  completedAt                 DateTime?               @db.Timestamptz(3)
+  organization                Organization            @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  unit                        PropertyUnit            @relation("MaintenanceRequest_unit", fields: [organizationId, unitId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  lease                       Lease?                  @relation("MaintenanceRequest_lease", fields: [organizationId, leaseId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  assignedMembership          OrganizationMembership? @relation("MaintenanceRequest_assignedMembership", fields: [organizationId, assignedMembershipId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  document_maintenanceRequest Document[]              @relation("Document_maintenanceRequest")
+  photo_maintenanceRequest    Photo[]                 @relation("Photo_maintenanceRequest")
+
+  @@unique([organizationId, id])
+  @@index([organizationId, unitId, status])
+  @@index([organizationId, leaseId])
+  @@index([organizationId, assignedMembershipId])
+  @@index([organizationId, unitId])
+  @@schema("ethos")
+}
+
+model Document {
+  id                   String              @id @default(uuid()) @db.Uuid
+  organizationId       String              @db.Uuid
+  createdAt            DateTime            @default(now()) @db.Timestamptz(3)
+  kind                 DocumentKind
+  originalName         String              @db.VarChar(255)
+  mimeType             String              @db.VarChar(120)
+  storageProvider      String              @db.VarChar(80)
+  bucket               String              @db.VarChar(120)
+  objectKey            String              @db.VarChar(500)
+  sizeBytes            BigInt
+  sha256               String              @db.Char(64)
+  ownerId              String?             @db.Uuid
+  tenantId             String?             @db.Uuid
+  unitId               String?             @db.Uuid
+  contractVersionId    String?             @db.Uuid
+  receiptId            String?             @db.Uuid
+  inspectionReportId   String?             @db.Uuid
+  maintenanceRequestId String?             @db.Uuid
+  organization         Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  owner                Owner?              @relation("Document_owner", fields: [organizationId, ownerId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  tenant               Tenant?             @relation("Document_tenant", fields: [organizationId, tenantId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  unit                 PropertyUnit?       @relation("Document_unit", fields: [organizationId, unitId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  contractVersion      ContractVersion?    @relation("Document_contractVersion", fields: [organizationId, contractVersionId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  receipt              Receipt?            @relation("Document_receipt", fields: [organizationId, receiptId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  inspectionReport     InspectionReport?   @relation("Document_inspectionReport", fields: [organizationId, inspectionReportId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  maintenanceRequest   MaintenanceRequest? @relation("Document_maintenanceRequest", fields: [organizationId, maintenanceRequestId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  photo_document       Photo[]             @relation("Photo_document")
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, storageProvider, bucket, objectKey])
+  @@index([organizationId, ownerId])
+  @@index([organizationId, tenantId])
+  @@index([organizationId, unitId])
+  @@index([organizationId, contractVersionId])
+  @@index([organizationId, receiptId])
+  @@index([organizationId, inspectionReportId])
+  @@index([organizationId, maintenanceRequestId])
+  @@schema("ethos")
+}
+
+model Photo {
+  id                   String              @id @default(uuid()) @db.Uuid
+  organizationId       String              @db.Uuid
+  createdAt            DateTime            @default(now()) @db.Timestamptz(3)
+  documentId           String              @db.Uuid
+  unitId               String              @db.Uuid
+  inspectionId         String?             @db.Uuid
+  maintenanceRequestId String?             @db.Uuid
+  caption              String?
+  sortOrder            Int                 @default(0)
+  takenAt              DateTime?           @db.Timestamptz(3)
+  organization         Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  document             Document            @relation("Photo_document", fields: [organizationId, documentId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  unit                 PropertyUnit        @relation("Photo_unit", fields: [organizationId, unitId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  inspection           Inspection?         @relation("Photo_inspection", fields: [organizationId, inspectionId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+  maintenanceRequest   MaintenanceRequest? @relation("Photo_maintenanceRequest", fields: [organizationId, maintenanceRequestId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, documentId])
+  @@index([organizationId, unitId, sortOrder])
+  @@index([organizationId, inspectionId])
+  @@index([organizationId, maintenanceRequestId])
+  @@index([organizationId, unitId])
+  @@schema("ethos")
+}
+
+model Notification {
+  id                    String                 @id @default(uuid()) @db.Uuid
+  organizationId        String                 @db.Uuid
+  createdAt             DateTime               @default(now()) @db.Timestamptz(3)
+  recipientMembershipId String                 @db.Uuid
+  kind                  NotificationKind
+  title                 String                 @db.VarChar(200)
+  message               String
+  payload               Json                   @default("{}")
+  readAt                DateTime?              @db.Timestamptz(3)
+  organization          Organization           @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  recipientMembership   OrganizationMembership @relation("Notification_recipientMembership", fields: [organizationId, recipientMembershipId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@index([organizationId, recipientMembershipId, readAt, createdAt])
+  @@index([organizationId, recipientMembershipId])
+  @@schema("ethos")
+}
+
+model AuditLog {
+  id                String                  @id @default(uuid()) @db.Uuid
+  organizationId    String                  @db.Uuid
+  createdAt         DateTime                @default(now()) @db.Timestamptz(3)
+  actorMembershipId String?                 @db.Uuid
+  action            String                  @db.VarChar(80)
+  entityType        String                  @db.VarChar(80)
+  entityId          String                  @db.Uuid
+  databaseRole      String                  @db.VarChar(100)
+  changedFields     Json                    @default("[]")
+  previousValues    Json?
+  currentValues     Json?
+  organization      Organization            @relation(fields: [organizationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  actorMembership   OrganizationMembership? @relation("AuditLog_actorMembership", fields: [organizationId, actorMembershipId], references: [organizationId, id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([organizationId, id])
+  @@index([organizationId, entityType, entityId, createdAt])
+  @@index([organizationId, actorMembershipId])
+  @@schema("ethos")
 }

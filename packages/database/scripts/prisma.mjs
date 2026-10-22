@@ -12,11 +12,16 @@ const entry = resolve(
   dirname(require.resolve("prisma/package.json")),
   "build/index.js",
 );
+// DDL over a remote pooler can exceed a minute; retain bounded execution.
+const timeout =
+  process.argv[2] === "migrate" && process.argv[3] === "deploy"
+    ? 300_000
+    : 60_000;
 const child = spawn(process.execPath, [entry, ...process.argv.slice(2)], {
   cwd: root,
   env: process.env,
   stdio: ["ignore", "pipe", "pipe"],
-  timeout: 60_000,
+  timeout,
 });
 let output = "";
 child.stdout.on("data", (data) => {

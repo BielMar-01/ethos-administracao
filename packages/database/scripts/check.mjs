@@ -19,6 +19,10 @@ try {
   const migrations = applied.map(({ checksum, ...migration }) => {
     if (!/^[a-zA-Z0-9_-]+$/.test(migration.migration_name))
       throw new Error("Nome de migration inválido.");
+    // Aborted, explicitly rolled-back attempts remain in Prisma's history.
+    // Their original SQL need not match a subsequently corrected, unapplied migration.
+    if (migration.rolled_back) return { ...migration, checksumMatches: null };
+    if (!migration.applied) throw new Error("Migration não concluída.");
     const sql = readFileSync(
       new URL(
         `../prisma/migrations/${migration.migration_name}/migration.sql`,

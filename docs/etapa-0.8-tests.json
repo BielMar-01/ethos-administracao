@@ -1,0 +1,41 @@
+{
+  "mode": "applied database",
+  "passed": 14,
+  "checks": [
+    "valid full graph, co-ownership 100%, three party roles and exact financial allocations",
+    "all application tables force RLS, deny globals, all tenant FKs composite",
+    "cross-organization FK and RBAC links rejected even as admin",
+    "organization codes isolated and active lease/main unit unique",
+    "owner totals, overlapping owner periods and exact percentages",
+    "invalid money, competence, dates, versions and platform role rejected",
+    "installment totals and over-allocation rejected",
+    "receipts, payment reversal and immutable historical records",
+    "files, inspections and maintenance linked to same unit",
+    "platform privilege grants and revocations audited separately",
+    "RLS denies missing, empty and malformed organization context",
+    "RLS allows own organization and blocks foreign reads/writes and global identity",
+    "RLS enforces FK links and protects audit insert/update/delete",
+    "tenant mutations create immutable audit history with validated actor"
+  ],
+  "unmanagedCatalog": {
+    "objects": 186,
+    "before": "cebeb792c6bfb14590ee62e1001fbe90d7f0fd47498c6ad6283df5f7954bcc33",
+    "after": "cebeb792c6bfb14590ee62e1001fbe90d7f0fd47498c6ad6283df5f7954bcc33"
+  },
+  "fixturesRolledBack": true,
+  "temporaryRoleRemoved": true,
+  "contextIntegration": {
+    "passed": 9,
+    "checks": [
+      "withOrganization refuses BYPASSRLS credentials",
+      "invalid context rejected before callback",
+      "Prisma uses same interactive transaction connection and verifies active membership",
+      "valid UUID does not grant access without membership",
+      "suspended organizations denied",
+      "Prisma mutation audit records transaction membership",
+      "single-connection pool retains no organization, actor or role after rollback",
+      "Prisma fixtures and temporary role rolled back",
+      "transaction-local context clears on commit without committing fixtures"
+    ]
+  }
+}
