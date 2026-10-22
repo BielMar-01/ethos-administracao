@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Bell, CircleUserRound } from "lucide-react";
+import { Menu, Bell, CircleUserRound, Building2 } from "lucide-react";
 import { ThemeToggle } from "../ui/theme-toggle";
 import { Breadcrumbs } from "../shared/breadcrumbs";
 import { mainNavigation, secondaryNavigation } from "../../lib/navigation";
@@ -42,18 +42,26 @@ export function Header({
       <div className="flex shrink-0 items-center gap-2 sm:gap-3">
         <ThemeToggle />
         <Link
+          href="/organizations"
+          aria-label="Trocar organização"
+          className="control flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted hover:text-foreground"
+        >
+          <Building2 size={18} aria-hidden="true" />
+        </Link>
+        <Link
           href="/app/notifications"
           aria-label="Abrir central de notificações"
           className="control flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted hover:text-foreground"
         >
           <Bell size={18} aria-hidden="true" />
         </Link>
-        <span
-          title="Perfil — indisponível no ambiente demonstrativo"
-          className="hidden h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-accent-foreground sm:flex"
+        <Link
+          href="/account/security"
+          aria-label="Segurança da conta"
+          className="control flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-accent-foreground"
         >
           <CircleUserRound size={22} aria-hidden="true" />
-        </span>
+        </Link>
       </div>
     </header>
   );

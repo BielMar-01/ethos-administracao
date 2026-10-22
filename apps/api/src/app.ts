@@ -6,10 +6,38 @@ import swagger from "@fastify/swagger";
 import swaggerUi from "@fastify/swagger-ui";
 import { ZodError } from "zod";
 import type { FastifyError } from "fastify";
+import { registerAuth } from "./auth/routes.js";
+import type { AuthDependencies } from "./auth/types.js";
+import { AuthError } from "./auth/security.js";
 
-export async function buildApp() {
+export async function buildApp(
+  options: {
+    auth?: AuthDependencies;
+    logger?: boolean;
+    logStream?: { write: (message: string) => void };
+  } = {},
+) {
   const app = Fastify({
-    logger: true,
+    logger:
+      options.logger === false
+        ? false
+        : {
+            stream: options.logStream,
+            redact: [
+              "req.headers.authorization",
+              "req.headers.cookie",
+              "res.headers.set-cookie",
+              "password",
+              "token",
+              "secret",
+            ],
+            serializers: {
+              req: (req: { method: string; url: string }) => ({
+                method: req.method,
+                url: req.url.split("?")[0],
+              }),
+            },
+          },
     requestIdHeader: "x-request-id",
     trustProxy: false,
   });
@@ -32,7 +60,7 @@ export async function buildApp() {
 
   // Limite de requisições por IP
   await app.register(rateLimit, {
-    max: 100,
+    max: 1000,
     timeWindow: "1 minute",
   });
 
@@ -69,7 +97,22 @@ export async function buildApp() {
 
   // Tratamento global de erros
   app.setErrorHandler((error: FastifyError | Error, request, reply) => {
-    request.log.error(error);
+    request.log.error({
+      event: "REQUEST_REJECTED",
+      code: error instanceof AuthError ? error.code : "REQUEST_ERROR",
+    });
+
+    if (error instanceof AuthError)
+      return reply.status(error.statusCode).send({
+        success: false,
+        error: {
+          code: error.code,
+          message:
+            error.statusCode === 401
+              ? "Não foi possível autenticar. Verifique os dados e tente novamente."
+              : "Não foi possível concluir esta solicitação.",
+        },
+      });
 
     if (error instanceof ZodError) {
       return reply.status(400).send({
@@ -77,7 +120,6 @@ export async function buildApp() {
         error: {
           code: "VALIDATION_ERROR",
           message: "Dados inválidos.",
-          details: error.issues,
         },
       });
     }
@@ -101,7 +143,9 @@ export async function buildApp() {
               ? "INTERNAL_SERVER_ERROR"
               : (fastifyError.code ?? "REQUEST_ERROR"),
         message:
-          statusCode >= 500 ? "Erro interno do servidor." : error.message,
+          statusCode >= 500
+            ? "Erro interno do servidor."
+            : "Não foi possível concluir esta solicitação.",
       },
     });
   });
@@ -142,5 +186,41 @@ export async function buildApp() {
     }),
   );
 
+  if (options.auth) {
+    const auth = await registerAuth(app, options.auth);
+    let maintenance: Promise<void> | undefined;
+    let lastCleanup = 0;
+    const timer = setInterval(() => {
+      if (maintenance) return;
+      maintenance = (async () => {
+        try {
+          await auth.drainMail();
+          if (Date.now() - lastCleanup > 60_000) {
+            await auth.cleanup();
+            lastCleanup = Date.now();
+          }
+        } catch {
+          app.log.error({ event: "AUTH_MAINTENANCE_FAILED" });
+        }
+      })().finally(() => {
+        maintenance = undefined;
+      });
+    }, 5_000);
+    timer.unref();
+    app.addHook("preClose", async () => {
+      clearInterval(timer);
+      await maintenance;
+    });
+  } else {
+    app.all("/api/v1/auth/*", async (_request, reply) =>
+      reply.status(503).send({
+        success: false,
+        error: {
+          code: "AUTH_UNAVAILABLE",
+          message: "Acesso temporariamente indisponível.",
+        },
+      }),
+    );
+  }
   return app;
 }

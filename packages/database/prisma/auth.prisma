@@ -1,0 +1,115 @@
+model AuthCredential {
+  userId           String    @id @db.Uuid
+  passwordHash     String
+  emailVerifiedAt  DateTime? @db.Timestamptz(3)
+  mfaSecretCipher  String?
+  pendingMfaCipher String?
+  mfaEnabled       Boolean   @default(false)
+  lastTotpCounter  BigInt?
+  updatedAt        DateTime  @updatedAt @db.Timestamptz(3)
+  user             User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@schema("ethos_identity")
+}
+
+model AuthSession {
+  id                String             @id @default(uuid()) @db.Uuid
+  userId            String             @db.Uuid
+  organizationId    String?            @db.Uuid
+  accessHash        String             @unique @db.Char(64)
+  csrfHash          String             @db.Char(64)
+  assurance         String             @default("PASSWORD") @db.VarChar(20)
+  accessExpiresAt   DateTime           @db.Timestamptz(3)
+  expiresAt         DateTime           @db.Timestamptz(3)
+  reauthenticatedAt DateTime           @db.Timestamptz(3)
+  revokedAt         DateTime?          @db.Timestamptz(3)
+  createdAt         DateTime           @default(now()) @db.Timestamptz(3)
+  lastSeenAt        DateTime           @default(now()) @db.Timestamptz(3)
+  deviceLabel       String             @db.VarChar(120)
+  user              User               @relation(fields: [userId], references: [id], onDelete: Restrict)
+  organization      Organization?      @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  refreshTokens     AuthRefreshToken[]
+
+  @@index([userId, revokedAt, expiresAt])
+  @@index([expiresAt])
+  @@schema("ethos_identity")
+}
+
+model AuthRefreshToken {
+  id        String      @id @default(uuid()) @db.Uuid
+  sessionId String      @db.Uuid
+  tokenHash String      @unique @db.Char(64)
+  expiresAt DateTime    @db.Timestamptz(3)
+  usedAt    DateTime?   @db.Timestamptz(3)
+  createdAt DateTime    @default(now()) @db.Timestamptz(3)
+  session   AuthSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([expiresAt])
+  @@schema("ethos_identity")
+}
+
+model AuthActionToken {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  purpose   String    @db.VarChar(20)
+  tokenHash String    @unique @db.Char(64)
+  expiresAt DateTime  @db.Timestamptz(3)
+  usedAt    DateTime? @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @db.Timestamptz(3)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, purpose])
+  @@index([expiresAt])
+  @@schema("ethos_identity")
+}
+
+model AuthRecoveryCode {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  tokenHash String    @unique @db.Char(64)
+  usedAt    DateTime? @db.Timestamptz(3)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@schema("ethos_identity")
+}
+
+model AuthEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String?  @db.Uuid
+  sessionId String?  @db.Uuid
+  category  String   @db.VarChar(60)
+  success   Boolean
+  reason    String?  @db.VarChar(500)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, createdAt])
+  @@schema("ethos_identity")
+}
+
+model AuthThrottle {
+  key         String   @id @db.Char(64)
+  attempts    Int      @default(0)
+  windowStart DateTime @db.Timestamptz(3)
+
+  @@index([windowStart])
+  @@schema("ethos_identity")
+}
+
+model AuthMailOutbox {
+  id            String    @id @default(uuid()) @db.Uuid
+  userId        String    @db.Uuid
+  recipient     String    @db.VarChar(320)
+  purpose       String    @db.VarChar(20)
+  payloadCipher String
+  attempts      Int       @default(0)
+  availableAt   DateTime  @default(now()) @db.Timestamptz(3)
+  deliveredAt   DateTime? @db.Timestamptz(3)
+  createdAt     DateTime  @default(now()) @db.Timestamptz(3)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([availableAt, deliveredAt])
+  @@schema("ethos_identity")
+}

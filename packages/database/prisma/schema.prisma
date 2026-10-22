@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  schemas  = ["ethos_technical", "ethos"]
+  schemas  = ["ethos_technical", "ethos", "ethos_identity"]
 }
 
 /// Estrutura técnica; não representa uma entidade de negócio.
@@ -191,6 +191,7 @@ enum PlatformRole {
 }
 
 model Organization {
+  authSessions            AuthSession[]
   id                      String                   @id @default(uuid()) @db.Uuid
   createdAt               DateTime                 @default(now()) @db.Timestamptz(3)
   name                    String                   @db.VarChar(200)
@@ -230,6 +231,12 @@ model Organization {
 }
 
 model User {
+  credential                        AuthCredential?
+  sessions                          AuthSession[]
+  actionTokens                      AuthActionToken[]
+  recoveryCodes                     AuthRecoveryCode[]
+  authEvents                        AuthEvent[]
+  authMail                          AuthMailOutbox[]
   id                                String                   @id @default(uuid()) @db.Uuid
   createdAt                         DateTime                 @default(now()) @db.Timestamptz(3)
   email                             String                   @unique @db.VarChar(320)

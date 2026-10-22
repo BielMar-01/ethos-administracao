@@ -1,0 +1,19 @@
+{
+  "passed": 12,
+  "checks": [
+    "unauthenticated administrative route redirects to login",
+    "six public auth screens at mobile/tablet/desktop without horizontal overflow",
+    "dark/light theme switching preserved",
+    "accessible password requirements and reveal toggle",
+    "browser signup, confirmation and login without public admin role",
+    "browser forgot-password and reset-password flow with revoked old sessions",
+    "all thirteen preserved administrative modules accessible to authorized organization admin",
+    "HttpOnly auth cookies and no localStorage tokens",
+    "organization switch and account sessions screen",
+    "organization, security and MFA screens responsive at three viewports",
+    "browser MFA enrollment and one-time recovery display",
+    "external tenant role cannot access organization-wide administration"
+  ],
+  "viewports": [360, 768, 1440],
+  "browserErrors": 0
+}

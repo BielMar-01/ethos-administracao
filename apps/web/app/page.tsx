@@ -49,10 +49,10 @@ export default function Home() {
           <ThemeToggle />
 
           <Link
-            href="/app/dashboard"
+            href="/login"
             className="rounded-lg border border-border px-5 py-3 text-sm transition hover:border-primary"
           >
-            Demonstração
+            Entrar
           </Link>
         </div>
       </header>
@@ -73,10 +73,10 @@ export default function Home() {
           </p>
 
           <Link
-            href="/app/dashboard"
+            href="/login"
             className="mt-10 inline-flex items-center gap-3 rounded-lg bg-primary px-7 py-4 font-semibold text-primary-foreground transition hover:opacity-90"
           >
-            Explorar demonstração
+            Acessar a plataforma
             <ArrowRight size={18} />
           </Link>
         </div>

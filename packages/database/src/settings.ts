@@ -39,14 +39,27 @@ export function migrationUrl(environment: NodeJS.ProcessEnv): string {
   url.searchParams.set("sslaccept", "strict");
   url.searchParams.set("sslcert", caFile.replaceAll("\\", "/"));
   url.searchParams.set("connect_timeout", "10");
+  if (environment.ETHOS_LOCAL_DATABASE === "1") {
+    if (!["127.0.0.1", "localhost", "[::1]"].includes(url.hostname))
+      throw new Error("LOCAL_DATABASE_MUST_USE_LOOPBACK");
+    url.searchParams.set("sslmode", "disable");
+    url.searchParams.delete("sslaccept");
+    url.searchParams.delete("sslcert");
+  }
   return url.toString();
 }
 
 export function poolConfiguration(
   value: string | undefined,
   maxConnections = 5,
+  allowLocalPlaintext = false,
 ): PoolConfig {
   const url = connectionUrl(value, "DATABASE_URL");
+  if (
+    allowLocalPlaintext &&
+    !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)
+  )
+    throw new Error("LOCAL_DATABASE_MUST_USE_LOOPBACK");
   if (
     !Number.isInteger(maxConnections) ||
     maxConnections < 1 ||
@@ -67,7 +80,10 @@ export function poolConfiguration(
     url.searchParams.delete(key);
   return {
     connectionString: url.toString(),
-    ssl: { ca: readFileSync(caFile, "utf8"), rejectUnauthorized: true },
+    // Only an explicitly loopback database may use plaintext for disposable local tests.
+    ssl: allowLocalPlaintext
+      ? false
+      : { ca: readFileSync(caFile, "utf8"), rejectUnauthorized: true },
     max: maxConnections,
     connectionTimeoutMillis: 10_000,
     idleTimeoutMillis: 30_000,

@@ -8,6 +8,7 @@ import { redact } from "./redact.mjs";
 
 config({ path: new URL("../.env", import.meta.url), quiet: true });
 const database = createDatabaseClient({
+  allowLocalPlaintext: process.env.ETHOS_LOCAL_DATABASE === "1",
   connectionString: process.env.DIRECT_DATABASE_URL,
   maxConnections: 1,
 });

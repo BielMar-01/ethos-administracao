@@ -9,7 +9,13 @@ import { redact } from "./redact.mjs";
 
 config({ path: new URL("../.env", import.meta.url), quiet: true });
 const rehearsal = process.argv.includes("--rehearsal");
-const c = new pg.Client(poolConfiguration(process.env.DIRECT_DATABASE_URL, 1));
+const c = new pg.Client(
+  poolConfiguration(
+    process.env.DIRECT_DATABASE_URL,
+    1,
+    process.env.ETHOS_LOCAL_DATABASE === "1",
+  ),
+);
 const role = `ethos_test_${randomUUID().replaceAll("-", "")}`;
 const ids = Object.fromEntries(
   [

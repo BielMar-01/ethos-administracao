@@ -8,6 +8,7 @@ export type DatabaseClient = {
   disconnect: () => Promise<void>;
 };
 export type DatabaseOptions = {
+  allowLocalPlaintext?: boolean;
   connectionString?: string;
   maxConnections?: number;
   onPoolError?: (error: { code: string }) => void;
@@ -20,6 +21,7 @@ export function createDatabaseClient(
     poolConfiguration(
       options.connectionString ?? process.env.DATABASE_URL,
       options.maxConnections,
+      options.allowLocalPlaintext,
     ),
   );
   pool.on("error", () => {
@@ -32,7 +34,11 @@ export function createDatabaseClient(
     schema: databaseSchema,
     disposeExternalPool: false,
   });
-  const prisma = new PrismaClient({ adapter, log: [] });
+  const prisma = new PrismaClient({
+    adapter,
+    log: [],
+    transactionOptions: { maxWait: 10_000, timeout: 15_000 },
+  });
   let disconnecting: Promise<void> | undefined;
   return {
     prisma,

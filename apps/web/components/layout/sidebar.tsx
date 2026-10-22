@@ -27,6 +27,7 @@ export function Sidebar({
     const Icon = item.icon;
     return (
       <Link
+        prefetch={false}
         key={item.href}
         href={item.href}
         onClick={onClose}
@@ -82,6 +83,7 @@ export function Sidebar({
       >
         <div className="sidebar-brand flex h-20 shrink-0 items-center justify-between border-b border-border px-6">
           <Link
+            prefetch={false}
             href="/app/dashboard"
             onClick={onClose}
             aria-label="Ethos Administração — Dashboard"

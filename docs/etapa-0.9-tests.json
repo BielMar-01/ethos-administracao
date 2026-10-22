@@ -1,0 +1,53 @@
+{
+  "environment": "disposable loopback PostgreSQL 17.11",
+  "productionModified": false,
+  "deployExecuted": false,
+  "externalEmailSent": false,
+  "migrations": [
+    {
+      "name": "20261022000000_init_infrastructure",
+      "applied": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022010000_multi_tenant_model",
+      "applied": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022020000_auth_identity",
+      "applied": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022021000_auth_event_reason",
+      "applied": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022022000_auth_privilege_revocation",
+      "applied": true,
+      "checksumMatches": true
+    }
+  ],
+  "schemaDiffEmpty": true,
+  "checks": {
+    "apiIntegration": 9,
+    "apiUnit": 3,
+    "databaseUnit": 9,
+    "webUnit": 21,
+    "legacyDatabaseIntegrity": 14,
+    "legacyPrismaContext": 9,
+    "browser": 12
+  },
+  "typecheck": ["database", "api", "web"],
+  "lint": ["database", "api", "web"],
+  "build": ["database", "api", "web"],
+  "productionReadOnlyInspection": {
+    "businessTables": 34,
+    "forcedRlsTables": 34,
+    "identitySchemaExists": false,
+    "runtimeRoles": 0,
+    "oldMigrationChecksumsMatch": true
+  }
+}

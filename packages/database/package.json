@@ -27,6 +27,8 @@
     "db:deploy": "node scripts/prisma.mjs migrate deploy",
     "db:status": "node scripts/prisma.mjs migrate status",
     "db:check": "node scripts/check.mjs",
+    "db:test:auth:setup": "node scripts/setup-auth-test.mjs",
+    "lint": "eslint src scripts tests prisma.config.ts",
     "db:test:integration": "node scripts/integration.mjs --report && node scripts/context-integration.mjs --report",
     "typecheck": "pnpm run db:generate && tsc --noEmit",
     "build": "pnpm run db:generate && tsc",
