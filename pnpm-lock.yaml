@@ -222,6 +222,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@ethos/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@ethos/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -277,6 +280,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@ethos/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@hookform/resolvers':
         specifier: ^5.9.1
         version: 5.9.1(@standard-schema/spec@1.1.0)(ajv@8.20.0)(arktype@2.2.8)(effect@3.20.0)(react-hook-form@7.90.0(@types/react@19.3.0)(react@19.3.0))(typanion@3.14.0)(valibot@1.4.2(typescript@5.9.3))(zod@4.6.7)
@@ -347,6 +353,19 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  packages/contracts:
+    dependencies:
+      zod:
+        specifier: ^4.6.7
+        version: 4.6.7
+    devDependencies:
+      '@types/node':
+        specifier: ^26.6.5
+        version: 26.6.5
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
 
   packages/database:
     dependencies:

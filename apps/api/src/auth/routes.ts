@@ -3,14 +3,13 @@ import cookie from "@fastify/cookie";
 import { z } from "zod";
 import type { AuthDependencies } from "./types.js";
 import { AuthService } from "./mfa.js";
+import { requestGuards, authCookieNames } from "./guards.js";
 import {
   AuthError,
   emailSchema,
   passwordSchema,
   tokenSchema,
   randomToken,
-  digest,
-  safeEqual,
 } from "./security.js";
 
 export async function registerAuth(
@@ -21,11 +20,7 @@ export async function registerAuth(
     throw Error("AUTH_SECRETS_INVALID");
   const service = new AuthService(deps),
     prefix = "/api/v1/auth";
-  const names = {
-    access: deps.production ? "__Host-ethos_access" : "ethos_access",
-    refresh: deps.production ? "__Host-ethos_refresh" : "ethos_refresh",
-    csrf: deps.production ? "__Host-ethos_csrf" : "ethos_csrf",
-  };
+  const names = authCookieNames(deps.production);
   const cookieOptions = {
     httpOnly: true,
     secure: deps.production,
@@ -60,35 +55,7 @@ export async function registerAuth(
         .header("Referrer-Policy", "no-referrer");
     return payload;
   });
-  const csrfValue = (request: FastifyRequest) => {
-    const signed = request.cookies[names.csrf];
-    if (!signed) return null;
-    const parsed = request.unsignCookie(signed);
-    return parsed.valid && parsed.value ? parsed.value : null;
-  };
-  const requireCsrf = async (request: FastifyRequest) => {
-    const header = request.headers["x-csrf-token"],
-      value = csrfValue(request);
-    if (
-      request.headers.origin !== deps.origin ||
-      typeof header !== "string" ||
-      !value ||
-      !safeEqual(header, value)
-    )
-      throw new AuthError(403, "CSRF_REJECTED");
-  };
-  const session = async (request: FastifyRequest, limited = false) => {
-    const result = await service.authenticate(
-      request.cookies[names.access],
-      limited,
-    );
-    if (request.method !== "GET" && request.method !== "HEAD") {
-      const csrf = csrfValue(request);
-      if (!csrf || result.csrfHash !== digest(csrf))
-        throw new AuthError(403, "CSRF_REJECTED");
-    }
-    return result;
-  };
+  const { csrfValue, requireCsrf, session } = requestGuards(deps, service);
   const setTokens = (
     reply: FastifyReply,
     tokens: { access: string; refresh: string },

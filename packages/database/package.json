@@ -32,7 +32,8 @@
     "db:test:integration": "node scripts/integration.mjs --report && node scripts/context-integration.mjs --report",
     "typecheck": "pnpm run db:generate && tsc --noEmit",
     "build": "pnpm run db:generate && tsc",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "db:test:business": "node scripts/test-business-grants.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.10.1",

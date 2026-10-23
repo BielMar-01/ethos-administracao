@@ -1,4 +1,12 @@
 let refreshing: Promise<boolean> | undefined;
+export function refreshSession() {
+  refreshing ??= authRequest("/refresh", {}, false)
+    .then((r) => r.ok)
+    .finally(() => {
+      refreshing = undefined;
+    });
+  return refreshing;
+}
 export async function authRequest(
   path: string,
   body?: Record<string, unknown>,
@@ -26,12 +34,7 @@ export async function authRequest(
     retry &&
     !["/login", "/refresh", "/verify-email", "/reset-password"].includes(path)
   ) {
-    refreshing ??= authRequest("/refresh", {}, false)
-      .then((r) => r.ok)
-      .finally(() => {
-        refreshing = undefined;
-      });
-    if (await refreshing) return authRequest(path, body, false);
+    if (await refreshSession()) return authRequest(path, body, false);
   }
   return response;
 }

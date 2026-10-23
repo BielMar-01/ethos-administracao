@@ -9,6 +9,8 @@ import type { FastifyError } from "fastify";
 import { registerAuth } from "./auth/routes.js";
 import type { AuthDependencies } from "./auth/types.js";
 import { AuthError } from "./auth/security.js";
+import { registerBusiness } from "./business/routes.js";
+import { BusinessError } from "./business/service.js";
 
 export async function buildApp(
   options: {
@@ -102,6 +104,18 @@ export async function buildApp(
       code: error instanceof AuthError ? error.code : "REQUEST_ERROR",
     });
 
+    if (error instanceof BusinessError)
+      return reply.status(error.statusCode).send({
+        success: false,
+        error: {
+          code: error.code,
+          message:
+            error.statusCode === 503
+              ? "Persistência temporariamente indisponível."
+              : "Não foi possível concluir a operação neste estado ou contexto.",
+        },
+        requestId: request.id,
+      });
     if (error instanceof AuthError)
       return reply.status(error.statusCode).send({
         success: false,
@@ -120,6 +134,13 @@ export async function buildApp(
         error: {
           code: "VALIDATION_ERROR",
           message: "Dados inválidos.",
+          fields: Object.fromEntries(
+            [
+              ...new Set(
+                error.issues.map((issue) => String(issue.path[0] ?? "form")),
+              ),
+            ].map((key) => [key, ["Confira o valor informado."]]),
+          ),
         },
       });
     }
@@ -188,6 +209,7 @@ export async function buildApp(
 
   if (options.auth) {
     const auth = await registerAuth(app, options.auth);
+    await registerBusiness(app, options.auth, auth);
     let maintenance: Promise<void> | undefined;
     let lastCleanup = 0;
     const timer = setInterval(() => {

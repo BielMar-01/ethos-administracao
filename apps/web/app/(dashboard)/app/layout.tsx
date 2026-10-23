@@ -1,5 +1,5 @@
 import { AppShell } from "../../../components/layout/app-shell";
-import { DemoProvider } from "../../../components/providers/demo-provider";
+import { BusinessProvider } from "../../../components/providers/business-provider";
 import { requireSession } from "../../../lib/auth-server";
 
 export default async function DashboardLayout({
@@ -7,10 +7,13 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  await requireSession(true);
+  const session = await requireSession(true);
   return (
-    <DemoProvider>
+    <BusinessProvider
+      key={`${session.user.id}:${session.organizationId}`}
+      organizationId={session.organizationId}
+    >
       <AppShell>{children}</AppShell>
-    </DemoProvider>
+    </BusinessProvider>
   );
 }

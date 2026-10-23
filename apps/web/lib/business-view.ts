@@ -1,0 +1,118 @@
+import type { Resource } from "@ethos/contracts";
+export type Parent = { resource: Resource; id: string };
+export const documentFields: Partial<Record<Resource, string>> = {
+  owners: "ownerId",
+  tenants: "tenantId",
+  units: "unitId",
+  versions: "contractVersionId",
+  receipts: "receiptId",
+  "inspection-reports": "inspectionReportId",
+  maintenance: "maintenanceRequestId",
+};
+export const words: Record<string, string> = {
+  INDIVIDUAL: "Pessoa física",
+  COMPANY: "Pessoa jurídica",
+  RESIDENTIAL: "Residencial",
+  COMMERCIAL: "Comercial",
+  MIXED: "Misto",
+  LAND: "Terreno",
+  DRAFT: "Rascunho",
+  ACTIVE: "Ativa",
+  ENDED: "Encerrada",
+  CANCELLED: "Cancelada",
+  SIGNED: "Assinado",
+  TERMINATED: "Encerrado",
+  PROPOSED: "Proposto",
+  APPROVED: "Aprovado",
+  APPLIED: "Aplicado",
+  ISSUED: "Emitida",
+  PENDING: "Pendente",
+  CONFIRMED: "Confirmado",
+  REVERSED: "Estornado",
+  VOIDED: "Anulado",
+  ENTRY: "Entrada",
+  EXIT: "Saída",
+  PERIODIC: "Periódica",
+  FINAL: "Final",
+  OPEN: "Aberta",
+  IN_PROGRESS: "Em andamento",
+  COMPLETED: "Concluída",
+  LOW: "Baixa",
+  NORMAL: "Normal",
+  HIGH: "Alta",
+  URGENT: "Urgente",
+  PRIMARY: "Titular",
+  CO_RESPONSIBLE: "Corresponsável",
+  OCCUPANT: "Ocupante",
+  RENT: "Aluguel",
+  CONDOMINIUM: "Condomínio",
+  TAX: "Tributo",
+  UTILITY: "Consumo",
+  PENALTY: "Multa",
+  OTHER: "Outro",
+  BANK_TRANSFER: "Transferência",
+  BANK_SLIP: "Boleto",
+  CASH: "Dinheiro",
+  CARD: "Cartão",
+  PHOTO: "Foto",
+  CONTRACT: "Contrato",
+  RECEIPT: "Recibo",
+  REPORT: "Laudo",
+  IDENTITY: "Identidade",
+};
+export const actionLabels: Record<string, string> = {
+  archive: "Arquivar",
+  activate: "Ativar",
+  end: "Encerrar",
+  cancel: "Cancelar",
+  sign: "Registrar assinatura",
+  terminate: "Encerrar",
+  approve: "Aprovar",
+  apply: "Aplicar",
+  issue: "Emitir",
+  confirm: "Confirmar",
+  reverse: "Estornar",
+  void: "Anular",
+  complete: "Concluir",
+  finalize: "Finalizar",
+  start: "Iniciar",
+};
+export const labels: Record<string, string> = {
+  id: "Identificador",
+  organizationId: "Organização",
+  createdAt: "Criado em",
+  status: "Situação",
+  version: "Versão",
+  contentHash: "Hash de integridade",
+  signedAt: "Assinatura registrada",
+  issuedAt: "Emitido em",
+  finalizedAt: "Finalizado em",
+  archivedAt: "Arquivado em",
+  successorLeaseId: "Locação sucessora",
+  previousRent: "Aluguel anterior",
+  percentage: "Percentual",
+  appliedAt: "Aplicado em",
+  completedAt: "Concluído em",
+  snapshot: "Dados preservados do recibo",
+  voidReason: "Motivo da anulação",
+  endedAt: "Encerrado em",
+  street: "Logradouro",
+  number: "Número",
+  complement: "Complemento",
+  neighborhood: "Bairro",
+  city: "Cidade",
+  state: "UF",
+  postalCode: "CEP",
+};
+export function display(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "—";
+  if (typeof value === "boolean") return value ? "Sim" : "Não";
+  if (typeof value === "object") {
+    const v = value as Record<string, unknown>;
+    if (v.text) return String(v.text);
+    return Object.entries(v)
+      .map(([key, item]) => `${labels[key] ?? key}: ${display(item)}`)
+      .join(" · ");
+  }
+  return words[String(value)] ?? String(value);
+}

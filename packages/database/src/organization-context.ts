@@ -49,12 +49,13 @@ export async function withOrganization<T>(
   prisma: PrismaClient,
   context: OrganizationContext,
   callback: (tx: OrganizationTransaction) => Promise<T>,
+  options: { isolationLevel?: Prisma.TransactionIsolationLevel } = {},
 ): Promise<T> {
   return prisma.$transaction(
     async (tx) => {
       await establishOrganizationContext(tx, context);
       return callback(tx);
     },
-    { maxWait: 10_000, timeout: 15_000 },
+    { maxWait: 10_000, timeout: 15_000, ...options },
   );
 }
