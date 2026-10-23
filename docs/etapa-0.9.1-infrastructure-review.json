@@ -1,0 +1,937 @@
+﻿{
+  "reviewedAt": "2026-10-23T00:28:38.102Z",
+  "readOnly": true,
+  "projectFingerprint": "1188cc459e3294a01ca5349666a76adf2b31f6fa61dd73ace60f76d3ddd13ee7",
+  "clientTls": {
+    "encrypted": true,
+    "authorized": true
+  },
+  "server": {
+    "version": "17.11",
+    "ssl_supported": "on",
+    "createrole_self_grant": "",
+    "upstream_tls": false,
+    "upstream_tls_version": null,
+    "backend_peer_private_ipv4": false
+  },
+  "privileges": {
+    "rolsuper": false,
+    "rolcreaterole": true,
+    "rolbypassrls": true,
+    "rolcreatedb": true,
+    "create_schema": true,
+    "connect": true
+  },
+  "tables": [
+    {
+      "schema": "ethos",
+      "table": "AuditLog",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "ExternalIdentity",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "MembershipRole",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Organization",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationMembership",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Permission",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAccessGrant",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAuditLog",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Role",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "RolePermission",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "User",
+      "owned": true,
+      "can_dump": true,
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos_technical",
+      "table": "_prisma_migrations",
+      "owned": true,
+      "can_dump": true,
+      "rls": false,
+      "forced": false
+    },
+    {
+      "schema": "ethos_technical",
+      "table": "infrastructure_checks",
+      "owned": true,
+      "can_dump": true,
+      "rls": false,
+      "forced": false
+    }
+  ],
+  "schemas": [
+    {
+      "nspname": "ethos",
+      "owned": true,
+      "usage": true
+    },
+    {
+      "nspname": "ethos_technical",
+      "owned": true,
+      "usage": true
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "ethos",
+      "tablename": "AuditLog",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Charge",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Charge",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Contract",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Contract",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "ContractVersion",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "ContractVersion",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Document",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Document",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Inspection",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Inspection",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "InspectionReport",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "InspectionReport",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Installment",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Installment",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Lease",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Lease",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseRenewal",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseRenewal",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseTenant",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseTenant",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MaintenanceRequest",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MaintenanceRequest",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MembershipRole",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MembershipRole",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Notification",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Notification",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Organization",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(id = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Organization",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(id = ethos.current_organization_id())",
+      "with_check": "(id = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationMembership",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationMembership",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationSettings",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationSettings",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Owner",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Owner",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Payment",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Payment",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PaymentAllocation",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PaymentAllocation",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Photo",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Photo",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Property",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Property",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyOwnership",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyOwnership",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyUnit",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyUnit",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Receipt",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Receipt",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RentAdjustment",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RentAdjustment",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Role",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Role",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RolePermission",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RolePermission",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Tenant",
+      "policyname": "tenant_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Tenant",
+      "policyname": "tenant_write",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    }
+  ],
+  "runtimeRolesAbsent": true,
+  "enabledEventTriggers": 6,
+  "history": [
+    {
+      "migration_name": "20261022000000_init_infrastructure",
+      "applied": true,
+      "rolled_back": false
+    },
+    {
+      "migration_name": "20261022010000_multi_tenant_model",
+      "applied": false,
+      "rolled_back": true
+    },
+    {
+      "migration_name": "20261022010000_multi_tenant_model",
+      "applied": true,
+      "rolled_back": false
+    }
+  ],
+  "directDns": {
+    "ipv4": {
+      "count": 0,
+      "code": "ENODATA"
+    },
+    "ipv6": {
+      "count": 1
+    }
+  },
+  "directProbe": {
+    "connected": true,
+    "clientEncrypted": true,
+    "certificateAuthorized": true,
+    "backend": {
+      "ssl": true,
+      "version": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384"
+    }
+  }
+}

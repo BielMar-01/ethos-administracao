@@ -1,0 +1,904 @@
+{
+  "auditedAt": "2026-10-23T00:45:49.220Z",
+  "readOnly": true,
+  "clientTls": {
+    "encrypted": true,
+    "authorized": true
+  },
+  "target": {
+    "host": "db.wszrtvgjcgpgntsssbhd.supabase.co",
+    "port": "5432",
+    "projectFingerprint": "1188cc459e3294a01ca5349666a76adf2b31f6fa61dd73ace60f76d3ddd13ee7",
+    "configuredUrlsSameProject": true,
+    "independentlyConfirmed": true
+  },
+  "server": {
+    "database": "postgres",
+    "version": "17.11",
+    "backend_tls": true,
+    "rolsuper": false,
+    "rolbypassrls": true,
+    "rolcreaterole": true
+  },
+  "identitySchemaExists": false,
+  "migrations": [
+    {
+      "migration_name": "20261022000000_init_infrastructure",
+      "applied": true,
+      "rolled_back": false,
+      "checksumMatches": true
+    },
+    {
+      "migration_name": "20261022010000_multi_tenant_model",
+      "applied": false,
+      "rolled_back": true,
+      "checksumMatches": null
+    },
+    {
+      "migration_name": "20261022010000_multi_tenant_model",
+      "applied": true,
+      "rolled_back": false,
+      "checksumMatches": true
+    }
+  ],
+  "pending": [
+    "20261022020000_auth_identity",
+    "20261022021000_auth_event_reason",
+    "20261022022000_auth_privilege_revocation"
+  ],
+  "tables": [
+    {
+      "schema": "ethos",
+      "table": "AuditLog",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "ExternalIdentity",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "MembershipRole",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Organization",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationMembership",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Permission",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAccessGrant",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAuditLog",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Role",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "RolePermission",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "rls": true,
+      "forced": true
+    },
+    {
+      "schema": "ethos",
+      "table": "User",
+      "rls": true,
+      "forced": true
+    }
+  ],
+  "roles": [],
+  "functions": [
+    {
+      "schema": "ethos",
+      "function": "audit_change",
+      "definer": true,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "current_organization_id",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": true
+    },
+    {
+      "schema": "ethos",
+      "function": "lock_parent",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "preserve_history",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "validate_charge",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "validate_finance",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "validate_ownership",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    },
+    {
+      "schema": "ethos",
+      "function": "validate_unit_links",
+      "definer": false,
+      "settings": ["search_path=pg_catalog"],
+      "owner_bypassrls": true,
+      "public_execute": false
+    }
+  ],
+  "defaultPrivileges": [
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "anon"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "public",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "SELECT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "UPDATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "S",
+      "privilege": "USAGE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "f",
+      "privilege": "EXECUTE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "OTHER_ROLE"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "anon"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "authenticated"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "INSERT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "SELECT",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "UPDATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "DELETE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRUNCATE",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "REFERENCES",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "TRIGGER",
+      "recipient": "service_role"
+    },
+    {
+      "schema": "storage",
+      "type": "r",
+      "privilege": "MAINTAIN",
+      "recipient": "service_role"
+    }
+  ],
+  "protectedCatalog": {
+    "objects": 186,
+    "sha256": "cebeb792c6bfb14590ee62e1001fbe90d7f0fd47498c6ad6283df5f7954bcc33"
+  }
+}

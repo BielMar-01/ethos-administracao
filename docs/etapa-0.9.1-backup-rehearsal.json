@@ -1,0 +1,13 @@
+﻿{
+  "schemaOnly": true,
+  "sourceReadOnly": true,
+  "dumpVersion": "17.11",
+  "sourceClientTlsVerifyFull": true,
+  "sourceConnection": "session-pooler",
+  "noBusinessRowsExported": true,
+  "isolatedRestorePassed": true,
+  "ownershipAndAclRestored": false,
+  "tables": 36,
+  "forcedRlsTables": 34,
+  "policies": 57
+}

@@ -1,0 +1,61 @@
+{
+  "preflight": {
+    "projectId": "wszrtvgjcgpgntsssbhd",
+    "at": "2026-10-23T00:49:50.540Z",
+    "backupIntegrity": true,
+    "sourceMatchesVerifiedSnapshot": true,
+    "clientAndBackendTls": true,
+    "secondCopyProtected": true,
+    "secondCopySamePhysicalMachine": true,
+    "backupSha256": "e921c2220d7138110c04c5a982a69bed953e38009d3aec3a66c83269ec03d81a",
+    "secondCopyDirectory": "C:\\Projetos\\ethos-administracao\\.backups\\secondary\\1188cc459e3294a01ca5349666a76adf2b31f6fa61dd73ace60f76d3ddd13ee7"
+  },
+  "operations": {
+    "migrations": {
+      "success": true,
+      "names": [
+        "20261022020000_auth_identity",
+        "20261022021000_auth_event_reason",
+        "20261022022000_auth_privilege_revocation"
+      ]
+    },
+    "grants": {
+      "success": true,
+      "roles": ["ethos_auth_runtime", "ethos_tenant_runtime"],
+      "bypassRls": false
+    },
+    "credentials": {
+      "success": true,
+      "independent": true,
+      "storedOnlyInProtectedLocalFile": true,
+      "secretsPrinted": false
+    }
+  },
+  "validation": {
+    "schema": true,
+    "generate": true,
+    "migrationStatus": true,
+    "allFiveChecksumsMatch": true,
+    "realRuntimeVerification": true,
+    "realAuthPluginStartup": true,
+    "preexistingDataPreserved": true,
+    "database": {
+      "lint": true,
+      "typecheck": true,
+      "build": true,
+      "unitTests": 14
+    },
+    "api": {
+      "lint": true,
+      "typecheck": true,
+      "build": true,
+      "unitTests": 3,
+      "isolatedAuthTests": 9
+    },
+    "isolatedIntegrityGroups": 14,
+    "isolatedContextChecks": 9,
+    "minimumGrantsAndIdempotence": true
+  },
+  "applicationDeployed": false,
+  "stage010Started": false
+}

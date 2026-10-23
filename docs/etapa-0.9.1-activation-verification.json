@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-23T00:54:24.671Z",
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "persistentWrites": false,
+  "preexistingDataAndMigrationRowsPreserved": true,
+  "identityTables": 8,
+  "identityPolicies": 8,
+  "identityTablesForceRls": true,
+  "identityTablesEmpty": true,
+  "runtimeBackendTls": true,
+  "definerRestrictedToTriggers": true,
+  "actualAuthPluginStartup": true,
+  "unauthenticatedRequestDenied": true,
+  "noMailWorkerOrListener": true
+}

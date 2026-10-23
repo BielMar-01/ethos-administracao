@@ -1,0 +1,71 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "independentlyConfirmed": true,
+  "connection": "direct-ipv6",
+  "tlsVerification": "verify-full",
+  "clients": "PostgreSQL 17.11 Windows x64",
+  "backup": {
+    "completed": true,
+    "createdAt": "2026-10-23T00:43:51.097Z",
+    "file": ".backups/1188cc459e3294a01ca5349666a76adf2b31f6fa61dd73ace60f76d3ddd13ee7/before-auth.dump",
+    "bytes": 214859,
+    "sha256": "e921c2220d7138110c04c5a982a69bed953e38009d3aec3a66c83269ec03d81a",
+    "checksumMatches": true,
+    "schemas": ["ethos", "ethos_technical"],
+    "includesData": true,
+    "includesOwnershipAndAcl": true,
+    "aclInheritanceDisabled": true,
+    "explicitAllowRules": 1
+  },
+  "restore": {
+    "completed": true,
+    "verifiedAt": "2026-10-23T00:44:18.781Z",
+    "postgresVersion": "17.11",
+    "isolatedNetwork": true,
+    "containerRemoved": true,
+    "catalogAndDataHashesMatch": true,
+    "ownershipAndAclApplied": false,
+    "objects": {
+      "tables": 36,
+      "indexes": 156,
+      "policies": 57,
+      "triggers": 76,
+      "functions": 8,
+      "constraints": 160,
+      "enumLabels": 71
+    },
+    "forcedRlsTables": 34,
+    "tablesVerified": 36,
+    "totalRows": 3,
+    "businessRows": 0
+  },
+  "changes": {
+    "sourceDataWritten": false,
+    "migrationsApplied": false,
+    "rolesCreated": false,
+    "permissionsChanged": false,
+    "deploy": false,
+    "commit": false,
+    "push": false
+  },
+  "portableTools": {
+    "source": "https://sbp.enterprisedb.com/getfile.jsp?fileid=1260616",
+    "zipSha256": "80379b2c04d51c30225532e0ae04509899141e9957ed096fe749d7fd9df8f82f",
+    "publisherChecksumIndependentlyCompared": false
+  },
+  "finalAudit": {
+    "backendTls": true,
+    "clientTlsAuthorized": true,
+    "identitySchemaAbsent": true,
+    "runtimeRolesAbsent": true,
+    "pendingMigrations": [
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "protectedCatalog": {
+      "objects": 186,
+      "sha256": "cebeb792c6bfb14590ee62e1001fbe90d7f0fd47498c6ad6283df5f7954bcc33"
+    }
+  }
+}

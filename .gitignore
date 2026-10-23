@@ -37,6 +37,10 @@ Thumbs.db
 *.tmp
 *.temp
 *.tsbuildinfo
+# Database backups and credentials are local operational artifacts, never source files.
+.backups/
+.secrets/
+.tools/
 **/.git-backup-web/
 **/.git-backup-web
 **/.git-backup-*
