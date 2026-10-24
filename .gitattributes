@@ -1,0 +1,3 @@
+# Preserve the reviewed SQL bytes and their approval/recovery hashes on Windows.
+packages/database/scripts/propose-business-runtime.sql text eol=lf
+packages/database/scripts/revoke-business-runtime.sql text eol=lf

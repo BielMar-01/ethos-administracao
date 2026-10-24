@@ -1,0 +1,28 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-24T01:17:49.456Z",
+  "readOnly": true,
+  "role": {
+    "current_user": "postgres",
+    "rolsuper": false,
+    "rolbypassrls": true,
+    "can_set_tenant_role": false,
+    "can_set_auth_role": false
+  },
+  "tenantMembership": [
+    {
+      "admin_option": true,
+      "inherit_option": false,
+      "set_option": false
+    }
+  ],
+  "approvedBusinessGrantsVerified": 44,
+  "tenantRuntimeSafe": true,
+  "all44TableDataHashesUnchanged": true,
+  "rlsAndStructuresUnchanged": true,
+  "forcedRlsTables": 42,
+  "organizationRows": "0",
+  "usersOrAuthModified": false,
+  "fixturesPersisted": false,
+  "noRecoveryPerformed": true
+}

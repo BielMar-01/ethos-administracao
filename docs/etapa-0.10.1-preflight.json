@@ -1,0 +1,30 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-23T14:21:50.504Z",
+  "mode": "preflight",
+  "sqlSha256": "bf190ef6241b9be22ac68690db53ab272f1b88c5d24a334937523d2350a6aae0",
+  "checks": [
+    "ethos_auth_runtime: genuine direct IPv6 TLS login and read-only check",
+    "ethos_tenant_runtime: genuine direct IPv6 TLS login and read-only check",
+    "backup primary/secondary hashes verified and live catalog/data/ACL equal protected snapshot"
+  ],
+  "deploy": false,
+  "connection": {
+    "direct": true,
+    "ipv6": true,
+    "authorizedTls": true,
+    "backendTls": true
+  },
+  "migrations": {
+    "applied": [
+      "20261022000000_init_infrastructure",
+      "20261022010000_multi_tenant_model",
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "pending": []
+  },
+  "completed": true,
+  "passed": 3
+}

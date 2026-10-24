@@ -1,0 +1,21 @@
+{
+  "approved": true,
+  "deploy": false,
+  "realDatabaseChecks": 38,
+  "lint": ["contracts", "database", "api", "web"],
+  "typecheck": ["contracts", "database", "api", "web"],
+  "build": ["contracts", "database", "api", "web"],
+  "unitTests": {
+    "database": 18,
+    "api": 3,
+    "web": 25
+  },
+  "isolatedRegression": {
+    "privilegeChecks": 31,
+    "businessHttpGroups": 18,
+    "authTests": 9
+  },
+  "realFixturesRolledBack": true,
+  "temporaryMembershipRolledBack": true,
+  "all44TablesUnchanged": true
+}

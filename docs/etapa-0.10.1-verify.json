@@ -1,0 +1,1784 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-24T01:15:11.503Z",
+  "mode": "verify",
+  "sqlSha256": "bf190ef6241b9be22ac68690db53ab272f1b88c5d24a334937523d2350a6aae0",
+  "checks": [
+    "exact column privileges, no grant option, DELETE, TRUNCATE or administrative flags",
+    "data, RLS, policies, structures, owners and non-column ACL unchanged",
+    "ethos_auth_runtime: genuine direct IPv6 TLS login and read-only check",
+    "ethos_tenant_runtime: genuine direct IPv6 TLS login and read-only check",
+    "transactional GRANT proven by savepoint rollback on same physical session",
+    "temporary SET enabled without changing ADMIN or INHERIT",
+    "missing organization context denies rows",
+    "INSERT denied without context",
+    "own-tenant INSERT succeeds as effective runtime",
+    "allowed column UPDATE succeeds",
+    "foreign UPDATE changes zero rows",
+    "foreign organization SELECT hidden",
+    "foreign organization INSERT denied",
+    "id UPDATE denied",
+    "organizationId UPDATE denied",
+    "createdAt UPDATE denied",
+    "createdAt INSERT denied",
+    "DELETE denied",
+    "identity reads denied",
+    "User protected UPDATE denied",
+    "Permission protected UPDATE denied",
+    "Role protected UPDATE denied",
+    "OrganizationMembership protected UPDATE denied",
+    "MembershipRole protected UPDATE denied",
+    "RolePermission protected UPDATE denied",
+    "PlatformAccessGrant protected UPDATE denied",
+    "AuditLog protected UPDATE denied",
+    "Document protected UPDATE denied",
+    "ContractVersion protected UPDATE denied",
+    "PaymentAllocation protected UPDATE denied",
+    "audit forgery denied",
+    "composite FK rejects cross-tenant reference",
+    "ownership percentage integrity",
+    "lease core history protected",
+    "allowed writes produce audit within rollback transaction",
+    "ROLLBACK restored SET=false, ADMIN/INHERIT and original physical session",
+    "all fixtures and generated audit rolled back",
+    "connection role and tenant context cleared after rollback"
+  ],
+  "deploy": false,
+  "connection": {
+    "direct": true,
+    "ipv6": true,
+    "authorizedTls": true,
+    "backendTls": true
+  },
+  "migrations": {
+    "applied": [
+      "20261022000000_init_infrastructure",
+      "20261022010000_multi_tenant_model",
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "pending": []
+  },
+  "effectiveWrites": [
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "amount",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "code",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "competence",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "kind",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "column": "code",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "content",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "contentHash",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "contractId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "validFrom",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "column": "version",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "bucket",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "contractVersionId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "inspectionReportId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "kind",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "maintenanceRequestId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "mimeType",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "objectKey",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "originalName",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "ownerId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "receiptId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "sha256",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "sizeBytes",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "storageProvider",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "tenantId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "column": "unitId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "completedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "kind",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "scheduledAt",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "column": "unitId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "content",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "finalizedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "inspectionId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "column": "version",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "amount",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "chargeId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "dueOn",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "number",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "baseRent",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "code",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "currency",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "dueDay",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "endedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "endsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "startsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "column": "unitId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "endsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "newRent",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "startsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "column": "successorLeaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "endsOn",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "role",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "startsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "column": "tenantId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "actualCost",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "category",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "completedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "description",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "estimatedCost",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "priority",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "title",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "column": "unitId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "kind",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "message",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "payload",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "readAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "recipientMembershipId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "column": "title",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Organization",
+      "column": "name",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "column": "preferences",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "column": "timezone",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "email",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "kind",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "name",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "phone",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "column": "taxIdentifier",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "amount",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "code",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "method",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "paidAt",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "reversedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "column": "amount",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "column": "installmentId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "column": "paymentId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "caption",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "documentId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "sortOrder",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "takenAt",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "column": "unitId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "address",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "code",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "kind",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "name",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "endsOn",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "ownerId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "percentage",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "propertyId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "column": "startsOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "area",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "code",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "isMain",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "name",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "column": "propertyId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "issuedAt",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "number",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "paymentId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "snapshot",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "voidReason",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "column": "voidedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "appliedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "effectiveOn",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "indexName",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "leaseId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "newRent",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "percentage",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "previousRent",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "column": "status",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "email",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "id",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "kind",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "name",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "organizationId",
+      "insert": true,
+      "update": false,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "phone",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "column": "taxIdentifier",
+      "insert": true,
+      "update": true,
+      "insert_grant": false,
+      "update_grant": false
+    }
+  ],
+  "transaction": {
+    "exclusiveClient": true,
+    "usesPool": false,
+    "concurrentQueries": false,
+    "backendPid": 576904,
+    "originalMembership": [
+      {
+        "grantor": "supabase_admin",
+        "admin_option": true,
+        "inherit_option": false,
+        "set_option": false
+      }
+    ],
+    "temporaryMembership": [
+      {
+        "grantor": "postgres",
+        "admin_option": false,
+        "inherit_option": false,
+        "set_option": true
+      },
+      {
+        "grantor": "supabase_admin",
+        "admin_option": true,
+        "inherit_option": false,
+        "set_option": false
+      }
+    ],
+    "ddlRollbackProven": true,
+    "membershipAfterRollback": [
+      {
+        "grantor": "supabase_admin",
+        "admin_option": true,
+        "inherit_option": false,
+        "set_option": false
+      }
+    ],
+    "samePhysicalSession": true,
+    "rollbackConfirmed": true
+  },
+  "completed": true,
+  "fixturesRolledBack": true,
+  "userAuthRbacWrites": false,
+  "validationMode": "genuine runtime logins read-only; positive/negative writes under SET LOCAL ROLE in reverted admin transaction",
+  "grantsApplied": true,
+  "passed": 38
+}

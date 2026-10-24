@@ -1,0 +1,1445 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-23T14:20:09.202Z",
+  "sourceWrites": false,
+  "grantsApplied": false,
+  "deploy": false,
+  "sqlSha256": "bf190ef6241b9be22ac68690db53ab272f1b88c5d24a334937523d2350a6aae0",
+  "grants": [
+    {
+      "table": "Owner",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier"
+      ]
+    },
+    {
+      "table": "Tenant",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier"
+      ]
+    },
+    {
+      "table": "Property",
+      "privilege": "INSERT",
+      "columns": ["id", "organizationId", "code", "name", "kind", "address"]
+    },
+    {
+      "table": "PropertyUnit",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "propertyId",
+        "code",
+        "name",
+        "isMain",
+        "area"
+      ]
+    },
+    {
+      "table": "PropertyOwnership",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "propertyId",
+        "ownerId",
+        "percentage",
+        "startsOn",
+        "endsOn"
+      ]
+    },
+    {
+      "table": "Lease",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "code",
+        "startsOn",
+        "endsOn",
+        "baseRent",
+        "currency",
+        "dueDay"
+      ]
+    },
+    {
+      "table": "LeaseTenant",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "tenantId",
+        "role",
+        "startsOn",
+        "endsOn"
+      ]
+    },
+    {
+      "table": "Contract",
+      "privilege": "INSERT",
+      "columns": ["id", "organizationId", "leaseId", "code"]
+    },
+    {
+      "table": "LeaseRenewal",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "successorLeaseId",
+        "startsOn",
+        "endsOn",
+        "newRent"
+      ]
+    },
+    {
+      "table": "RentAdjustment",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "effectiveOn",
+        "previousRent",
+        "newRent",
+        "percentage",
+        "indexName"
+      ]
+    },
+    {
+      "table": "Charge",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "code",
+        "kind",
+        "competence",
+        "amount"
+      ]
+    },
+    {
+      "table": "Installment",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "chargeId",
+        "number",
+        "dueOn",
+        "amount"
+      ]
+    },
+    {
+      "table": "Payment",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "code",
+        "amount",
+        "method",
+        "paidAt"
+      ]
+    },
+    {
+      "table": "Receipt",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "paymentId",
+        "number",
+        "issuedAt",
+        "snapshot"
+      ]
+    },
+    {
+      "table": "Inspection",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "leaseId",
+        "kind",
+        "scheduledAt"
+      ]
+    },
+    {
+      "table": "InspectionReport",
+      "privilege": "INSERT",
+      "columns": ["id", "organizationId", "inspectionId", "version", "content"]
+    },
+    {
+      "table": "MaintenanceRequest",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "leaseId",
+        "title",
+        "description",
+        "category",
+        "priority",
+        "estimatedCost",
+        "actualCost"
+      ]
+    },
+    {
+      "table": "Photo",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "documentId",
+        "unitId",
+        "caption",
+        "sortOrder",
+        "takenAt"
+      ]
+    },
+    {
+      "table": "Notification",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "recipientMembershipId",
+        "kind",
+        "title",
+        "message",
+        "payload"
+      ]
+    },
+    {
+      "table": "OrganizationSettings",
+      "privilege": "INSERT",
+      "columns": ["id", "organizationId", "timezone", "preferences"]
+    },
+    {
+      "table": "ContractVersion",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "contractId",
+        "version",
+        "content",
+        "contentHash",
+        "validFrom"
+      ]
+    },
+    {
+      "table": "PaymentAllocation",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "paymentId",
+        "installmentId",
+        "amount"
+      ]
+    },
+    {
+      "table": "Document",
+      "privilege": "INSERT",
+      "columns": [
+        "id",
+        "organizationId",
+        "kind",
+        "originalName",
+        "mimeType",
+        "storageProvider",
+        "bucket",
+        "objectKey",
+        "sizeBytes",
+        "sha256",
+        "ownerId",
+        "tenantId",
+        "unitId",
+        "contractVersionId",
+        "receiptId",
+        "inspectionReportId",
+        "maintenanceRequestId"
+      ]
+    },
+    {
+      "table": "Owner",
+      "privilege": "UPDATE",
+      "columns": [
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier",
+        "archivedAt"
+      ]
+    },
+    {
+      "table": "Tenant",
+      "privilege": "UPDATE",
+      "columns": [
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier",
+        "archivedAt"
+      ]
+    },
+    {
+      "table": "Property",
+      "privilege": "UPDATE",
+      "columns": ["code", "name", "kind", "address", "archivedAt"]
+    },
+    {
+      "table": "PropertyUnit",
+      "privilege": "UPDATE",
+      "columns": ["code", "name", "isMain", "area", "archivedAt"]
+    },
+    {
+      "table": "PropertyOwnership",
+      "privilege": "UPDATE",
+      "columns": ["endsOn"]
+    },
+    {
+      "table": "Lease",
+      "privilege": "UPDATE",
+      "columns": ["status", "endedAt"]
+    },
+    {
+      "table": "LeaseTenant",
+      "privilege": "UPDATE",
+      "columns": ["endsOn"]
+    },
+    {
+      "table": "Contract",
+      "privilege": "UPDATE",
+      "columns": ["code", "status"]
+    },
+    {
+      "table": "LeaseRenewal",
+      "privilege": "UPDATE",
+      "columns": ["status"]
+    },
+    {
+      "table": "RentAdjustment",
+      "privilege": "UPDATE",
+      "columns": ["status", "appliedAt"]
+    },
+    {
+      "table": "Charge",
+      "privilege": "UPDATE",
+      "columns": ["code", "kind", "competence", "amount", "status"]
+    },
+    {
+      "table": "Installment",
+      "privilege": "UPDATE",
+      "columns": ["number", "dueOn", "amount"]
+    },
+    {
+      "table": "Payment",
+      "privilege": "UPDATE",
+      "columns": ["status", "reversedAt"]
+    },
+    {
+      "table": "Receipt",
+      "privilege": "UPDATE",
+      "columns": ["status", "voidedAt", "voidReason"]
+    },
+    {
+      "table": "Inspection",
+      "privilege": "UPDATE",
+      "columns": ["kind", "scheduledAt", "completedAt"]
+    },
+    {
+      "table": "InspectionReport",
+      "privilege": "UPDATE",
+      "columns": ["status", "content", "finalizedAt"]
+    },
+    {
+      "table": "MaintenanceRequest",
+      "privilege": "UPDATE",
+      "columns": [
+        "title",
+        "description",
+        "category",
+        "status",
+        "priority",
+        "estimatedCost",
+        "actualCost",
+        "completedAt"
+      ]
+    },
+    {
+      "table": "Photo",
+      "privilege": "UPDATE",
+      "columns": ["caption", "sortOrder", "takenAt"]
+    },
+    {
+      "table": "Notification",
+      "privilege": "UPDATE",
+      "columns": ["readAt"]
+    },
+    {
+      "table": "OrganizationSettings",
+      "privilege": "UPDATE",
+      "columns": ["timezone", "preferences"]
+    },
+    {
+      "table": "Organization",
+      "privilege": "UPDATE",
+      "columns": ["name"]
+    }
+  ],
+  "connection": {
+    "direct": true,
+    "ipv6": true,
+    "encrypted": true,
+    "authorized": true,
+    "backendTls": true
+  },
+  "migrationChecks": [
+    {
+      "name": "20261022000000_init_infrastructure",
+      "applied": true,
+      "rolledBack": false,
+      "local": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022010000_multi_tenant_model",
+      "applied": false,
+      "rolledBack": true,
+      "local": true,
+      "checksumMatches": false
+    },
+    {
+      "name": "20261022010000_multi_tenant_model",
+      "applied": true,
+      "rolledBack": false,
+      "local": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022020000_auth_identity",
+      "applied": true,
+      "rolledBack": false,
+      "local": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022021000_auth_event_reason",
+      "applied": true,
+      "rolledBack": false,
+      "local": true,
+      "checksumMatches": true
+    },
+    {
+      "name": "20261022022000_auth_privilege_revocation",
+      "applied": true,
+      "rolledBack": false,
+      "local": true,
+      "checksumMatches": true
+    }
+  ],
+  "migrations": {
+    "pending": [],
+    "applied": [
+      "20261022000000_init_infrastructure",
+      "20261022010000_multi_tenant_model",
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "checksumsMatch": true
+  },
+  "roles": [
+    {
+      "rolname": "ethos_auth_runtime",
+      "rolcanlogin": true,
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolreplication": false,
+      "rolinherit": false
+    },
+    {
+      "rolname": "ethos_tenant_runtime",
+      "rolcanlogin": true,
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolreplication": false,
+      "rolinherit": false
+    }
+  ],
+  "runtimeRoleMemberships": 0,
+  "currentWrites": [],
+  "tables": [
+    {
+      "table": "AuditLog",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Charge",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Contract",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "ContractVersion",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Document",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "ExternalIdentity",
+      "enabled": true,
+      "forced": true,
+      "readable": false,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Inspection",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "InspectionReport",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Installment",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Lease",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "LeaseTenant",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "MaintenanceRequest",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "MembershipRole",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Notification",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Organization",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "OrganizationMembership",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "OrganizationSettings",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Owner",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Payment",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "PaymentAllocation",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Permission",
+      "enabled": true,
+      "forced": true,
+      "readable": false,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Photo",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "PlatformAccessGrant",
+      "enabled": true,
+      "forced": true,
+      "readable": false,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "PlatformAuditLog",
+      "enabled": true,
+      "forced": true,
+      "readable": false,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Property",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "PropertyUnit",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Receipt",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "RentAdjustment",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Role",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "RolePermission",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "Tenant",
+      "enabled": true,
+      "forced": true,
+      "readable": true,
+      "delete": false,
+      "truncate": false
+    },
+    {
+      "table": "User",
+      "enabled": true,
+      "forced": true,
+      "readable": false,
+      "delete": false,
+      "truncate": false
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "ethos",
+      "tablename": "AuditLog",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Charge",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Charge",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Contract",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Contract",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "ContractVersion",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "ContractVersion",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Document",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Document",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Inspection",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Inspection",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "InspectionReport",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "InspectionReport",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Installment",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Installment",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Lease",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Lease",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseRenewal",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseRenewal",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseTenant",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "LeaseTenant",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MaintenanceRequest",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MaintenanceRequest",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MembershipRole",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MembershipRole",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "MembershipRole",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Notification",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Notification",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Organization",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Organization",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(id = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Organization",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(id = ethos.current_organization_id())",
+      "with_check": "(id = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationMembership",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationMembership",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationMembership",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationSettings",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "OrganizationSettings",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Owner",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Owner",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Payment",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Payment",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PaymentAllocation",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PaymentAllocation",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Permission",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Photo",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Photo",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PlatformAccessGrant",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Property",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Property",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyOwnership",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyOwnership",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyUnit",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "PropertyUnit",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Receipt",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Receipt",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RentAdjustment",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RentAdjustment",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Role",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Role",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Role",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RolePermission",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RolePermission",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "RolePermission",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Tenant",
+      "policyname": "tenant_select",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "Tenant",
+      "policyname": "tenant_write",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(\"organizationId\" = ethos.current_organization_id())",
+      "with_check": "(\"organizationId\" = ethos.current_organization_id())"
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "User",
+      "policyname": "identity_metadata_read",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": null
+    },
+    {
+      "schemaname": "ethos",
+      "tablename": "User",
+      "policyname": "identity_registration",
+      "roles": "{public}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthActionToken",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthCredential",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthEvent",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthMailOutbox",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthRecoveryCode",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthRefreshToken",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthSession",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    },
+    {
+      "schemaname": "ethos_identity",
+      "tablename": "AuthThrottle",
+      "policyname": "identity_runtime",
+      "roles": "{public}",
+      "cmd": "ALL",
+      "qual": "(CURRENT_USER = 'ethos_auth_runtime'::name)",
+      "with_check": "(CURRENT_USER = 'ethos_auth_runtime'::name)"
+    }
+  ],
+  "proposedColumnCount": 228
+}

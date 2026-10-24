@@ -50,9 +50,9 @@ GRANT UPDATE ("code", "kind", "competence", "amount", "status") ON ethos."Charge
 GRANT UPDATE ("number", "dueOn", "amount") ON ethos."Installment" TO ethos_tenant_runtime;
 GRANT UPDATE ("status", "reversedAt") ON ethos."Payment" TO ethos_tenant_runtime;
 GRANT UPDATE ("status", "voidedAt", "voidReason") ON ethos."Receipt" TO ethos_tenant_runtime;
-GRANT UPDATE ("responsibleMembershipId", "kind", "scheduledAt", "completedAt") ON ethos."Inspection" TO ethos_tenant_runtime;
+GRANT UPDATE ("kind", "scheduledAt", "completedAt") ON ethos."Inspection" TO ethos_tenant_runtime;
 GRANT UPDATE ("status", "content", "finalizedAt") ON ethos."InspectionReport" TO ethos_tenant_runtime;
-GRANT UPDATE ("assignedMembershipId", "title", "description", "category", "status", "priority", "estimatedCost", "actualCost", "completedAt") ON ethos."MaintenanceRequest" TO ethos_tenant_runtime;
+GRANT UPDATE ("title", "description", "category", "status", "priority", "estimatedCost", "actualCost", "completedAt") ON ethos."MaintenanceRequest" TO ethos_tenant_runtime;
 GRANT UPDATE ("caption", "sortOrder", "takenAt") ON ethos."Photo" TO ethos_tenant_runtime;
 GRANT UPDATE ("readAt") ON ethos."Notification" TO ethos_tenant_runtime;
 GRANT UPDATE ("timezone", "preferences") ON ethos."OrganizationSettings" TO ethos_tenant_runtime;

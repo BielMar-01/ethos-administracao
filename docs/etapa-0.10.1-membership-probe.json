@@ -1,0 +1,35 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "before": [
+    {
+      "grantor": "supabase_admin",
+      "admin_option": true,
+      "inherit_option": false,
+      "set_option": false
+    }
+  ],
+  "temporary": [
+    {
+      "grantor": "postgres",
+      "admin_option": false,
+      "inherit_option": true,
+      "set_option": true
+    },
+    {
+      "grantor": "supabase_admin",
+      "admin_option": true,
+      "inherit_option": false,
+      "set_option": false
+    }
+  ],
+  "after": [
+    {
+      "grantor": "supabase_admin",
+      "admin_option": true,
+      "inherit_option": false,
+      "set_option": false
+    }
+  ],
+  "rollbackConfirmed": true,
+  "fixturesCreated": false
+}

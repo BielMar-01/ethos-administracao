@@ -38,17 +38,17 @@ try {
   await c.query(sql);
   checks.push("column grants are idempotent in isolated database");
   for (const match of sql.matchAll(
-    /GRANT INSERT \(([^)]+)\) ON ethos\."(\w+)"/g,
+    /GRANT (INSERT|UPDATE) \(([^)]+)\) ON ethos\."(\w+)"/g,
   )) {
-    const allowed = match[1].split(", ").map((c) => c.slice(1, -1));
+    const allowed = match[2].split(", ").map((c) => c.slice(1, -1));
     const { rows } = await c.query(
-      "SELECT column_name FROM information_schema.columns WHERE table_schema='ethos' AND table_name=$1 AND has_column_privilege('ethos_tenant_runtime',format('%I.%I',table_schema,table_name),column_name,'INSERT') ORDER BY column_name",
-      [match[2]],
+      "SELECT column_name FROM information_schema.columns WHERE table_schema='ethos' AND table_name=$1 AND has_column_privilege('ethos_tenant_runtime',format('%I.%I',table_schema,table_name),column_name,$2) ORDER BY column_name",
+      [match[3], match[1]],
     );
     assert.deepEqual(rows.map((r) => r.column_name).sort(), allowed.sort());
   }
   checks.push(
-    "INSERT privileges match the exact narrowed column allowlist on all 23 tables",
+    "INSERT and UPDATE privileges match all 44 exact column allowlists",
   );
   await c.query("BEGIN");
   const a = randomUUID(),

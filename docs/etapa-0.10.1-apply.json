@@ -1,0 +1,439 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-23T14:22:15.687Z",
+  "mode": "apply",
+  "sqlSha256": "bf190ef6241b9be22ac68690db53ab272f1b88c5d24a334937523d2350a6aae0",
+  "checks": [
+    "ethos_auth_runtime: genuine direct IPv6 TLS login and read-only check",
+    "ethos_tenant_runtime: genuine direct IPv6 TLS login and read-only check",
+    "backup primary/secondary hashes verified and live catalog/data/ACL equal protected snapshot"
+  ],
+  "deploy": false,
+  "connection": {
+    "direct": true,
+    "ipv6": true,
+    "authorizedTls": true,
+    "backendTls": true
+  },
+  "migrations": {
+    "applied": [
+      "20261022000000_init_infrastructure",
+      "20261022010000_multi_tenant_model",
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "pending": []
+  },
+  "grantsApplied": true,
+  "completed": true,
+  "grants": [
+    {
+      "privilege": "INSERT",
+      "table": "Owner",
+      "columns": [
+        "id",
+        "organizationId",
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Tenant",
+      "columns": [
+        "id",
+        "organizationId",
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Property",
+      "columns": ["id", "organizationId", "code", "name", "kind", "address"]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "PropertyUnit",
+      "columns": [
+        "id",
+        "organizationId",
+        "propertyId",
+        "code",
+        "name",
+        "isMain",
+        "area"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "PropertyOwnership",
+      "columns": [
+        "id",
+        "organizationId",
+        "propertyId",
+        "ownerId",
+        "percentage",
+        "startsOn",
+        "endsOn"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Lease",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "code",
+        "startsOn",
+        "endsOn",
+        "baseRent",
+        "currency",
+        "dueDay"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "LeaseTenant",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "tenantId",
+        "role",
+        "startsOn",
+        "endsOn"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Contract",
+      "columns": ["id", "organizationId", "leaseId", "code"]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "LeaseRenewal",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "successorLeaseId",
+        "startsOn",
+        "endsOn",
+        "newRent"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "RentAdjustment",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "effectiveOn",
+        "previousRent",
+        "newRent",
+        "percentage",
+        "indexName"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Charge",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "code",
+        "kind",
+        "competence",
+        "amount"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Installment",
+      "columns": [
+        "id",
+        "organizationId",
+        "chargeId",
+        "number",
+        "dueOn",
+        "amount"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Payment",
+      "columns": [
+        "id",
+        "organizationId",
+        "leaseId",
+        "code",
+        "amount",
+        "method",
+        "paidAt"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Receipt",
+      "columns": [
+        "id",
+        "organizationId",
+        "paymentId",
+        "number",
+        "issuedAt",
+        "snapshot"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Inspection",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "leaseId",
+        "kind",
+        "scheduledAt"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "InspectionReport",
+      "columns": ["id", "organizationId", "inspectionId", "version", "content"]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "MaintenanceRequest",
+      "columns": [
+        "id",
+        "organizationId",
+        "unitId",
+        "leaseId",
+        "title",
+        "description",
+        "category",
+        "priority",
+        "estimatedCost",
+        "actualCost"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Photo",
+      "columns": [
+        "id",
+        "organizationId",
+        "documentId",
+        "unitId",
+        "caption",
+        "sortOrder",
+        "takenAt"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Notification",
+      "columns": [
+        "id",
+        "organizationId",
+        "recipientMembershipId",
+        "kind",
+        "title",
+        "message",
+        "payload"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "OrganizationSettings",
+      "columns": ["id", "organizationId", "timezone", "preferences"]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "ContractVersion",
+      "columns": [
+        "id",
+        "organizationId",
+        "contractId",
+        "version",
+        "content",
+        "contentHash",
+        "validFrom"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "PaymentAllocation",
+      "columns": [
+        "id",
+        "organizationId",
+        "paymentId",
+        "installmentId",
+        "amount"
+      ]
+    },
+    {
+      "privilege": "INSERT",
+      "table": "Document",
+      "columns": [
+        "id",
+        "organizationId",
+        "kind",
+        "originalName",
+        "mimeType",
+        "storageProvider",
+        "bucket",
+        "objectKey",
+        "sizeBytes",
+        "sha256",
+        "ownerId",
+        "tenantId",
+        "unitId",
+        "contractVersionId",
+        "receiptId",
+        "inspectionReportId",
+        "maintenanceRequestId"
+      ]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Owner",
+      "columns": [
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier",
+        "archivedAt"
+      ]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Tenant",
+      "columns": [
+        "name",
+        "kind",
+        "email",
+        "phone",
+        "taxIdentifier",
+        "archivedAt"
+      ]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Property",
+      "columns": ["code", "name", "kind", "address", "archivedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "PropertyUnit",
+      "columns": ["code", "name", "isMain", "area", "archivedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "PropertyOwnership",
+      "columns": ["endsOn"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Lease",
+      "columns": ["status", "endedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "LeaseTenant",
+      "columns": ["endsOn"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Contract",
+      "columns": ["code", "status"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "LeaseRenewal",
+      "columns": ["status"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "RentAdjustment",
+      "columns": ["status", "appliedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Charge",
+      "columns": ["code", "kind", "competence", "amount", "status"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Installment",
+      "columns": ["number", "dueOn", "amount"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Payment",
+      "columns": ["status", "reversedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Receipt",
+      "columns": ["status", "voidedAt", "voidReason"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Inspection",
+      "columns": ["kind", "scheduledAt", "completedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "InspectionReport",
+      "columns": ["status", "content", "finalizedAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "MaintenanceRequest",
+      "columns": [
+        "title",
+        "description",
+        "category",
+        "status",
+        "priority",
+        "estimatedCost",
+        "actualCost",
+        "completedAt"
+      ]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Photo",
+      "columns": ["caption", "sortOrder", "takenAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Notification",
+      "columns": ["readAt"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "OrganizationSettings",
+      "columns": ["timezone", "preferences"]
+    },
+    {
+      "privilege": "UPDATE",
+      "table": "Organization",
+      "columns": ["name"]
+    }
+  ],
+  "passed": 3
+}
