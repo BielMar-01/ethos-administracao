@@ -18,6 +18,13 @@ import type { Session } from "../auth/sessions.js";
 import { rolePermissions } from "../auth/rbac.js";
 import { AuthError } from "../auth/security.js";
 import { z } from "zod";
+import {
+  beginMutation,
+  finishMutation,
+  revisions,
+  type Mutation,
+  type MutationHeaders,
+} from "./consistency.js";
 import { Repository } from "./repository.js";
 
 export class BusinessError extends Error {
@@ -61,6 +68,7 @@ export class BusinessService {
     callback: (context: Context) => Promise<T>,
     write = false,
     retryVersionConflict = false,
+    mutation?: Mutation,
   ): Promise<T> {
     if (!session.organizationId)
       throw new AuthError(409, "ORGANIZATION_REQUIRED");
@@ -109,12 +117,57 @@ export class BusinessService {
               if (!allowed.has(permission))
                 throw new AuthError(403, "ACCESS_DENIED");
             };
-            return callback({
+            const context = {
               repo: new Repository(tx, session.organizationId!),
               tx,
               membershipId: membership.id,
               permit,
-            });
+            };
+            if (!mutation) return callback(context);
+            const resource = mutation.resource as Resource;
+            if (mutation.resource === "settings") permit("settings.update");
+            else if (resource === "documents") {
+              const parent = mutation.id
+                ? await this.require(context, resource, mutation.id)
+                : (mutation.input as Record<string, unknown>);
+              await this.documentPermission(context, parent, "update");
+            } else
+              permit(
+                this.permission(resource, mutation.operation.split(":")[0]!),
+              );
+            if (mutation.id && mutation.resource !== "settings")
+              await this.require(context, resource, mutation.id);
+            const receipt = await beginMutation(
+              tx,
+              session.organizationId!,
+              membership.id,
+              mutation,
+            );
+            if (receipt.existing) {
+              const row =
+                mutation.resource === "settings"
+                  ? await this.settingsRow(context)
+                  : await this.require(
+                      context,
+                      resource,
+                      receipt.existing.recordId,
+                    );
+              return (
+                await revisions(tx, session.organizationId!, resource, [row])
+              )[0] as T;
+            }
+            const result = await callback(context);
+            const row = result as unknown as { id: string };
+            await finishMutation(
+              tx,
+              session.organizationId!,
+              mutation,
+              receipt,
+              row.id,
+            );
+            return (
+              await revisions(tx, session.organizationId!, resource, [row])
+            )[0] as T;
           },
           { isolationLevel: write ? "Serializable" : "RepeatableRead" },
         );
@@ -141,10 +194,10 @@ export class BusinessService {
           (error as { cause?: { originalCode?: string } }).cause?.originalCode;
         if (write && ["40001", "40P01"].includes(sql ?? "") && attempt < 2)
           continue;
-        // A competing append can consume the version observed in this snapshot.
-        // Retry only this rolled-back version transaction, never arbitrary mutations.
+        // A competing append/receipt may consume the unique key after this snapshot.
+        // Only fully rolled-back transactions with database-only effects are retried.
         if (
-          retryVersionConflict &&
+          (retryVersionConflict || mutation) &&
           (e.code === "P2002" || sql === "23505") &&
           attempt < 2
         )
@@ -238,7 +291,16 @@ export class BusinessService {
         !definition(resource).parent
       )
         throw new BusinessError(400, "INVALID_PARENT_FILTER");
-      return c.repo.list(resource, query, extra);
+      const result = await c.repo.list(resource, query, extra);
+      return {
+        ...result,
+        data: await revisions(
+          c.tx,
+          c.repo.organizationId,
+          resource,
+          result.data,
+        ),
+      };
     });
   }
   async detail(session: Session, resource: Resource, id: string) {
@@ -247,7 +309,9 @@ export class BusinessService {
       const row = await this.require(c, resource, id);
       if (resource === "documents")
         await this.documentPermission(c, row, "read");
-      return row;
+      return (
+        await revisions(c.tx, c.repo.organizationId, resource, [row])
+      )[0]!;
     });
   }
   async references(
@@ -302,7 +366,12 @@ export class BusinessService {
       throw new BusinessError(400, "INVALID_COMPETENCE");
     return output;
   }
-  async create(session: Session, resource: Resource, input: unknown) {
+  async create(
+    session: Session,
+    resource: Resource,
+    input: unknown,
+    headers: MutationHeaders,
+  ) {
     const parsed = inputSchema(resource).parse(input);
     return this.run(
       session,
@@ -443,6 +512,7 @@ export class BusinessService {
       },
       true,
       resource === "versions" || resource === "inspection-reports",
+      { ...headers, resource, operation: `create:${resource}`, input: parsed },
     );
   }
   async update(
@@ -450,6 +520,7 @@ export class BusinessService {
     resource: Resource,
     id: string,
     input: unknown,
+    headers: MutationHeaders,
   ) {
     if (
       definition(resource).appendOnly ||
@@ -513,6 +584,14 @@ export class BusinessService {
         return result;
       },
       true,
+      false,
+      {
+        ...headers,
+        resource,
+        id,
+        operation: `update:${resource}:${id}`,
+        input: parsed,
+      },
     );
   }
   async notify(
@@ -534,6 +613,7 @@ export class BusinessService {
     id: string,
     action: string,
     input: unknown,
+    headers: MutationHeaders,
   ) {
     const body = actionInput.parse(input);
     const d = definition(resource);
@@ -815,6 +895,14 @@ export class BusinessService {
         return result;
       },
       true,
+      false,
+      {
+        ...headers,
+        resource,
+        id,
+        operation: `${["archive", "cancel", "end", "terminate", "void", "reverse"].includes(action) ? "archive" : "update"}:${resource}:${id}:${action}`,
+        input: body,
+      },
     );
   }
   async summary(
@@ -1053,14 +1141,31 @@ export class BusinessService {
       true,
     );
   }
-  async settings(session: Session, input?: unknown) {
+  async settingsRow(c: Context) {
+    const organization = await c.tx.organization.findUniqueOrThrow({
+      where: { id: c.repo.organizationId },
+    });
+    const settings = await c.tx.organizationSettings.findFirst({
+      where: { organizationId: c.repo.organizationId },
+    });
+    return {
+      id: c.repo.organizationId,
+      name: organization.name,
+      timezone: settings?.timezone ?? "America/Sao_Paulo",
+      currency: settings?.currency ?? "BRL",
+      preferences: settings?.preferences ?? {},
+      persisted: Boolean(settings),
+    };
+  }
+  async settings(
+    session: Session,
+    input?: unknown,
+    headers: MutationHeaders = {},
+  ) {
     return this.run(
       session,
       async (c) => {
         c.permit(input === undefined ? "settings.read" : "settings.update");
-        const organization = await c.tx.organization.findUniqueOrThrow({
-          where: { id: c.repo.organizationId },
-        });
         let settings = await c.tx.organizationSettings.findFirst({
           where: { organizationId: c.repo.organizationId },
         });
@@ -1107,17 +1212,25 @@ export class BusinessService {
             });
           }
           await this.notify(c, "Configurações atualizadas");
-          return { name: value.name ?? organization.name, ...settings };
+          return this.settingsRow(c);
         }
-        return {
-          name: organization.name,
-          timezone: settings?.timezone ?? "America/Sao_Paulo",
-          currency: settings?.currency ?? "BRL",
-          preferences: settings?.preferences ?? {},
-          persisted: Boolean(settings),
-        };
+        return (
+          await revisions(c.tx, c.repo.organizationId, "settings", [
+            await this.settingsRow(c),
+          ])
+        )[0]!;
       },
       input !== undefined,
+      false,
+      input === undefined
+        ? undefined
+        : {
+            ...headers,
+            resource: "settings",
+            operation: "update:settings",
+            id: session.organizationId!,
+            input,
+          },
     );
   }
 }

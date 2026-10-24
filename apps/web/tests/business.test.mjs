@@ -47,6 +47,67 @@ test("typed HTTP client sends session-context expectation and a CSRF challenge",
     assert.equal(calls[1].options.headers["x-ethos-context"], "org-fixture");
     assert.equal(calls[1].options.headers["x-csrf-token"], "challenge");
     assert.equal(calls[1].options.cache, "no-store");
+    assert.match(
+      calls[1].options.headers["idempotency-key"],
+      /^[a-f0-9-]{36}$/,
+    );
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+
+test("expired access refreshes once preserving mutation identity and revision", async () => {
+  const original = globalThis.fetch,
+    mutations = [];
+  globalThis.fetch = async (url, options = {}) => {
+    if (url === "/api/auth/csrf")
+      return new Response(JSON.stringify({ csrfToken: "challenge" }));
+    if (url === "/api/auth/refresh")
+      return new Response(JSON.stringify({ success: true }));
+    mutations.push(options);
+    return new Response(
+      JSON.stringify(
+        mutations.length === 1
+          ? { error: { code: "EXPIRED" } }
+          : { success: true },
+      ),
+      { status: mutations.length === 1 ? 401 : 200 },
+    );
+  };
+  try {
+    await businessRequest("owners/id", "org", {
+      method: "PATCH",
+      body: { name: "Edit" },
+      ifMatch: '"revision"',
+    });
+    assert.equal(mutations.length, 2);
+    assert.equal(
+      mutations[0].headers["idempotency-key"],
+      mutations[1].headers["idempotency-key"],
+    );
+    assert.equal(mutations[1].headers["if-match"], '"revision"');
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+
+test("404, 412 and 429 remain explicit errors without mutation retries", async () => {
+  const original = globalThis.fetch;
+  try {
+    for (const status of [404, 412, 429]) {
+      let calls = 0;
+      globalThis.fetch = async () => {
+        calls++;
+        return new Response(JSON.stringify({ error: { code: "REJECTED" } }), {
+          status,
+        });
+      };
+      await assert.rejects(
+        businessRequest("owners/id", "org"),
+        (e) => e instanceof ApiFault && e.status === status,
+      );
+      assert.equal(calls, 1);
+    }
   } finally {
     globalThis.fetch = original;
   }

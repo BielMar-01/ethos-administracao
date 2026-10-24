@@ -1,0 +1,27 @@
+{
+  "isolated": true,
+  "productionTouched": false,
+  "acceptancePassed": false,
+  "decisionRequired": true,
+  "findings": [
+    {
+      "id": "R2",
+      "staleUpdateAccepted": true,
+      "resolved": false
+    },
+    {
+      "id": "R3",
+      "sameKeyCreatedDistinctVersions": true,
+      "versions": [1, 2],
+      "headerCurrentlyNotContracted": true,
+      "resolved": false
+    }
+  ],
+  "allocationReplay": {
+    "rejectedWith409": true,
+    "allocations": 1,
+    "totalAllocated": "25",
+    "paymentAmount": "100.00"
+  },
+  "existingFinancialCapsStillRespected": true
+}

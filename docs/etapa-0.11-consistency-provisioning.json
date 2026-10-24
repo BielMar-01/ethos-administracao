@@ -1,0 +1,9 @@
+{
+  "isolated": true,
+  "profile": "business-0.11-isolated",
+  "repeatedAclIdentical": true,
+  "oldProfileDowngradeBlocked": true,
+  "runtimeAdminFlagsFalse": true,
+  "noTechnicalDelete": true,
+  "identityRoleDeniedTechnicalAccess": true
+}

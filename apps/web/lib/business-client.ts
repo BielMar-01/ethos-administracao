@@ -11,6 +11,11 @@ export class ApiFault extends Error {
   }
 }
 const messages: Record<string, string> = {
+  PRECONDITION_FAILED:
+    "Este registro foi alterado por outra pessoa. Seus dados foram mantidos; reabra o registro para comparar antes de salvar.",
+  PRECONDITION_REQUIRED: "Atualize a visualização do registro antes de salvar.",
+  IDEMPOTENCY_CONFLICT:
+    "Esta tentativa já foi usada com outros dados. Confira o resultado antes de reenviar.",
   ACCESS_DENIED: "Você não tem permissão para esta operação.",
   STATE_CONFLICT:
     "A operação conflita com vínculos ou histórico. Atualize os dados e confira o estado do registro.",
@@ -29,12 +34,21 @@ export async function businessRequest<T>(
     method?: "GET" | "POST" | "PATCH";
     body?: unknown;
     signal?: AbortSignal;
+    ifMatch?: string;
+    idempotencyKey?: string;
   } = {},
   retry = true,
 ): Promise<T> {
   const method = options.method ?? "GET",
     headers: Record<string, string> = { "x-ethos-context": organizationId };
   if (method !== "GET") {
+    // Preserve the same key through the single authenticated refresh retry.
+    options = {
+      ...options,
+      idempotencyKey: options.idempotencyKey ?? crypto.randomUUID(),
+    };
+    headers["idempotency-key"] = options.idempotencyKey!;
+    if (options.ifMatch) headers["if-match"] = options.ifMatch;
     const challenge = await fetch("/api/auth/csrf", {
       cache: "no-store",
       credentials: "same-origin",

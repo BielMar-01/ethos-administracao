@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   definition,
@@ -186,6 +186,13 @@ export function RecordEditor({
     [busy, setBusy] = useState(false);
   const change = (key: string, value: unknown) =>
     setValues((v) => ({ ...v, [key]: value }));
+  const attempt = useRef<{ body: string; key: string } | null>(null);
+  const attemptKey = (value: unknown) => {
+    const body = JSON.stringify(value);
+    if (attempt.current?.body !== body)
+      attempt.current = { body, key: crypto.randomUUID() };
+    return attempt.current.key;
+  };
   async function save(event: React.FormEvent) {
     event.preventDefault();
     setBusy(true);
@@ -221,7 +228,12 @@ export function RecordEditor({
       await businessRequest<Result<RecordDto>>(
         `${resource}${row ? `/${row.id}` : ""}`,
         org,
-        { method: row ? "PATCH" : "POST", body: parsed.data },
+        {
+          method: row ? "PATCH" : "POST",
+          body: parsed.data,
+          ifMatch: typeof row?._etag === "string" ? row._etag : undefined,
+          idempotencyKey: attemptKey(parsed.data),
+        },
       );
       await queryClient.invalidateQueries({ queryKey: [org] });
       onSaved();

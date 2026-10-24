@@ -1,0 +1,37 @@
+{
+  "isolated": true,
+  "requests": 40,
+  "concurrency": 4,
+  "fixtureRows": 250,
+  "latencyMs": {
+    "p50": 35.38469999999984,
+    "p95": 95.41820000000007,
+    "max": 96.24669999999992
+  },
+  "rssBytes": {
+    "before": 255053824,
+    "after": 295747584
+  },
+  "runtimeConnectionsObserved": 2,
+  "plans": {
+    "owner": {
+      "node": "Limit",
+      "executionMs": 0.139,
+      "planningMs": 0.062
+    },
+    "revisions": {
+      "node": "Result",
+      "executionMs": 0.028,
+      "planningMs": 0.033
+    }
+  },
+  "timeoutRollbackAndReuse": true,
+  "idleConnectionLossRecovered": true,
+  "serverOutageRecovered": true,
+  "limitations": [
+    "loopback, warm process and small synthetic dataset",
+    "pool observation includes separate browser fixture server",
+    "not a sustained load or production capacity test",
+    "revision lookup is one batched query per page; SQL call count was not instrumented"
+  ]
+}

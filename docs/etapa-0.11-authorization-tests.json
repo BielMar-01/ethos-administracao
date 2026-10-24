@@ -1,0 +1,1016 @@
+{
+  "isolated": true,
+  "assertions": 170,
+  "matrix": [
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "owners",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "properties",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "units",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "ownerships",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "photos",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "tenants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "leases",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "participants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "renewals",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "adjustments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "contracts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "versions",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "charges",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "installments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "payments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "allocations",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "receipts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "inspections",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "inspection-reports",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "maintenance",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "documents",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "settings",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "dashboard",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "calendar",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "reports",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "ADMIN_ORGANIZACAO",
+      "resource": "notifications",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "owners",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "properties",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "units",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "ownerships",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "photos",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "tenants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "leases",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "participants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "renewals",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "adjustments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "contracts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "versions",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "charges",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "installments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "payments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "allocations",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "receipts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "inspections",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "inspection-reports",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "maintenance",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "documents",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "settings",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "GESTOR",
+      "resource": "dashboard",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "calendar",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "reports",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "notifications",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "GESTOR",
+      "resource": "charges",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "GESTOR",
+      "resource": "settings",
+      "operation": "update denied",
+      "expected": 403
+    },
+    {
+      "role": "GESTOR",
+      "resource": "owners",
+      "operation": "create/update allowed",
+      "expected": 201
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "owners",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "properties",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "units",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "ownerships",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "photos",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "tenants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "leases",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "participants",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "renewals",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "adjustments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "contracts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "versions",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "charges",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "installments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "payments",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "allocations",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "receipts",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "inspections",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "inspection-reports",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "maintenance",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "documents",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "settings",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "dashboard",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "calendar",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "reports",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "notifications",
+      "operation": "list",
+      "expected": 200
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "owners",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "properties",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "tenants",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "leases",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "contracts",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "inspections",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "maintenance",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "settings",
+      "operation": "update denied",
+      "expected": 403
+    },
+    {
+      "role": "FINANCEIRO",
+      "resource": "charges",
+      "operation": "create/update allowed",
+      "expected": 201
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "owners",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "properties",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "units",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "ownerships",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "photos",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "tenants",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "leases",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "participants",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "renewals",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "adjustments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "contracts",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "versions",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "charges",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "installments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "payments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "allocations",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "receipts",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "inspections",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "inspection-reports",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "maintenance",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "documents",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "settings",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "dashboard",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "calendar",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "reports",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "notifications",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "owners",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "properties",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "tenants",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "leases",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "contracts",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "charges",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "inspections",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "maintenance",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "PROPRIETARIO",
+      "resource": "settings",
+      "operation": "update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "owners",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "properties",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "units",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "ownerships",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "photos",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "tenants",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "leases",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "participants",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "renewals",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "adjustments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "contracts",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "versions",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "charges",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "installments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "payments",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "allocations",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "receipts",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "inspections",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "inspection-reports",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "maintenance",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "documents",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "settings",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "dashboard",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "calendar",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "reports",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "notifications",
+      "operation": "list",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "owners",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "properties",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "tenants",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "leases",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "contracts",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "charges",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "inspections",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "maintenance",
+      "operation": "create/update denied",
+      "expected": 403
+    },
+    {
+      "role": "INQUILINO",
+      "resource": "settings",
+      "operation": "update denied",
+      "expected": 403
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "owners",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "properties",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "tenants",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "leases",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "contracts",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "charges",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "inspections",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "FOREIGN_ADMIN",
+      "resource": "maintenance",
+      "operation": "IDOR read/update blocked"
+    },
+    {
+      "role": "ADMIN",
+      "resource": "owners",
+      "operation": "mass assignment, stale context and unsafe sort blocked"
+    },
+    {
+      "role": "SUPER_ADMIN",
+      "resource": "organization administration",
+      "operation": "MFA verified, no implicit membership or tenant bypass"
+    }
+  ]
+}

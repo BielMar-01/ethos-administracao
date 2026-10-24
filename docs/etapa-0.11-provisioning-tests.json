@@ -1,0 +1,13 @@
+{
+  "isolated": true,
+  "productionProvisioningExecuted": false,
+  "passed": 6,
+  "checks": [
+    "explicit business profile is idempotent and preserves all reviewed column grants",
+    "legacy reconciliation refuses to downgrade active business grants",
+    "explicit auth-only profile cannot silently downgrade business profile",
+    "unauthorized DELETE, protected column UPDATE and identity USAGE are removed atomically",
+    "administrative memberships, SET and INHERIT are unchanged",
+    "unsafe runtime flags stop provisioning and rollback preserves grants"
+  ]
+}

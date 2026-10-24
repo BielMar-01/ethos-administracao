@@ -12,6 +12,16 @@ export async function registerBusiness(
   deps: AuthDependencies,
   auth: AuthService,
 ) {
+  const mutationHeaders = (request: { headers: Record<string, unknown> }) => ({
+    ifMatch:
+      typeof request.headers["if-match"] === "string"
+        ? request.headers["if-match"]
+        : undefined,
+    idempotencyKey:
+      typeof request.headers["idempotency-key"] === "string"
+        ? request.headers["idempotency-key"]
+        : undefined,
+  });
   const service = new BusinessService(deps),
     guards = requestGuards(deps, auth);
   const businessRoots = new Set<string>([
@@ -47,16 +57,15 @@ export async function registerBusiness(
         ),
       ) as object),
     }));
-    app.get(`${base}/:id`, async (request) => ({
-      success: true,
-      data: wire(
-        await service.detail(
-          await guards.session(request),
-          resource,
-          uuid.parse((request.params as { id: string }).id),
-        ),
-      ),
-    }));
+    app.get(`${base}/:id`, async (request, reply) => {
+      const data = await service.detail(
+        await guards.session(request),
+        resource,
+        uuid.parse((request.params as { id: string }).id),
+      );
+      reply.header("ETag", data._etag);
+      return { success: true, data: wire(data) };
+    });
     app.post(
       base,
       { onRequest: guards.requireCsrf, bodyLimit: 65536 },
@@ -68,6 +77,7 @@ export async function registerBusiness(
               await guards.session(request),
               resource,
               request.body,
+              mutationHeaders(request),
             ),
           ),
         }),
@@ -83,6 +93,7 @@ export async function registerBusiness(
             resource,
             uuid.parse((request.params as { id: string }).id),
             request.body,
+            mutationHeaders(request),
           ),
         ),
       }),
@@ -103,6 +114,7 @@ export async function registerBusiness(
               uuid.parse((request.params as { id: string }).id),
               action,
               request.body ?? {},
+              mutationHeaders(request),
             ),
           ),
         }),
@@ -191,7 +203,11 @@ export async function registerBusiness(
     async (request) => ({
       success: true,
       data: wire(
-        await service.settings(await guards.session(request), request.body),
+        await service.settings(
+          await guards.session(request),
+          request.body,
+          mutationHeaders(request),
+        ),
       ),
     }),
   );

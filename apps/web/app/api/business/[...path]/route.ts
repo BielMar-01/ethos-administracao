@@ -80,6 +80,8 @@ async function bridge(
           "content-type": "application/json",
           "x-csrf-token": request.headers.get("x-csrf-token") ?? "",
           "x-ethos-context": context,
+          "if-match": request.headers.get("if-match") ?? "",
+          "idempotency-key": request.headers.get("idempotency-key") ?? "",
         },
       },
     );
@@ -89,6 +91,9 @@ async function bridge(
         "content-type": "application/json",
         "cache-control": "no-store",
         "referrer-policy": "no-referrer",
+        ...(upstream.headers.has("etag")
+          ? { etag: upstream.headers.get("etag")! }
+          : {}),
       },
     });
   } catch {

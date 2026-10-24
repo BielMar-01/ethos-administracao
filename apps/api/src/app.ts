@@ -11,6 +11,7 @@ import type { AuthDependencies } from "./auth/types.js";
 import { AuthError } from "./auth/security.js";
 import { registerBusiness } from "./business/routes.js";
 import { BusinessError } from "./business/service.js";
+import { randomUUID } from "node:crypto";
 
 export async function buildApp(
   options: {
@@ -40,9 +41,20 @@ export async function buildApp(
               }),
             },
           },
-    requestIdHeader: "x-request-id",
+    requestIdHeader: false,
+    genReqId: () => randomUUID(),
+    bodyLimit: 65536,
     trustProxy: false,
   });
+  app.addHook("onRequest", async (request, reply) => {
+    reply.header("x-request-id", request.id);
+  });
+  app.setNotFoundHandler((_request, reply) =>
+    reply.status(404).send({
+      success: false,
+      error: { code: "ROUTE_NOT_FOUND", message: "Recurso indisponível." },
+    }),
+  );
 
   // CORS: origens autorizadas
   const allowedOrigins = (
@@ -89,13 +101,14 @@ export async function buildApp(
     },
   });
 
-  await app.register(swaggerUi, {
-    routePrefix: "/docs",
-    uiConfig: {
-      docExpansion: "list",
-      deepLinking: true,
-    },
-  });
+  if (process.env.NODE_ENV !== "production")
+    await app.register(swaggerUi, {
+      routePrefix: "/docs",
+      uiConfig: {
+        docExpansion: "list",
+        deepLinking: true,
+      },
+    });
 
   // Tratamento global de erros
   app.setErrorHandler((error: FastifyError | Error, request, reply) => {

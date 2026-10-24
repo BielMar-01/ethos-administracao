@@ -191,6 +191,7 @@ enum PlatformRole {
 }
 
 model Organization {
+  resourceRevisions       ResourceRevision[]
   authSessions            AuthSession[]
   id                      String                   @id @default(uuid()) @db.Uuid
   createdAt               DateTime                 @default(now()) @db.Timestamptz(3)
@@ -322,6 +323,7 @@ model OrganizationSettings {
 }
 
 model OrganizationMembership {
+  mutationReceipts                      MutationReceipt[]
   id                                    String               @id @default(uuid()) @db.Uuid
   organizationId                        String               @db.Uuid
   createdAt                             DateTime             @default(now()) @db.Timestamptz(3)

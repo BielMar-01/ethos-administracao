@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { Page, RecordDto, Result } from "@ethos/contracts";
 import { businessRequest } from "../../lib/business-client";
@@ -205,7 +205,12 @@ export function NotificationsWorkspace() {
     </div>
   );
 }
-type Settings = { name: string; timezone: string; currency: string };
+type Settings = {
+  _etag: string;
+  name: string;
+  timezone: string;
+  currency: string;
+};
 function SettingsForm({ initial }: { initial: Settings }) {
   const org = useOrganization(),
     client = useQueryClient(),
@@ -214,14 +219,24 @@ function SettingsForm({ initial }: { initial: Settings }) {
     [timezone, setZone] = useState(initial.timezone),
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
+  const attempt = useRef<{ body: string; key: string } | null>(null);
+  const [revision, setRevision] = useState(initial._etag);
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
     try {
-      await businessRequest("settings", org, {
+      const body = { name, timezone };
+      const serialized = JSON.stringify(body);
+      if (attempt.current?.body !== serialized)
+        attempt.current = { body: serialized, key: crypto.randomUUID() };
+      const saved = await businessRequest<Result<Settings>>("settings", org, {
         method: "PATCH",
-        body: { name, timezone },
+        body,
+        ifMatch: revision,
+        idempotencyKey: attempt.current.key,
       });
+      setRevision(saved.data._etag);
+      attempt.current = null;
       await client.invalidateQueries({ queryKey: [org] });
       setMessage("Configurações salvas.");
     } catch (e) {

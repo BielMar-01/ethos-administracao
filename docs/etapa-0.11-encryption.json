@@ -1,0 +1,16 @@
+{
+  "sourceSnapshot": "stage-0.10.1-b377f036-b23d-4c3c-b74d-9d6e76f2a9a8",
+  "sourceConnection": false,
+  "sourceWrites": false,
+  "archiveVerified": true,
+  "metadataIncluded": true,
+  "algorithm": "AES-256-GCM",
+  "encryptedSha256": "7b24734948605ad2212ebb7b93842440ae980a5efed0efe2b49d351b5d1fb4ec",
+  "bytes": 490965,
+  "twoLocalCopiesVerified": true,
+  "externalTransmission": false,
+  "keyStoredSeparately": true,
+  "localAclsRestricted": true,
+  "recoveryPending": false,
+  "restoreEvidence": "docs/etapa-0.11-restore.json"
+}

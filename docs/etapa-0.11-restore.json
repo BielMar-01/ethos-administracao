@@ -1,0 +1,34 @@
+{
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "at": "2026-10-24T11:06:23.717Z",
+  "sourceConnection": false,
+  "sourceWrites": false,
+  "archiveSha256": "5fbcd042675e56812ff1298d8e1a93c2b0da19513ddcc76d3556c2a6d3d3b353",
+  "archiveVerified": true,
+  "isolatedNetwork": true,
+  "catalog": {
+    "enums": true,
+    "tables": true,
+    "indexes": true,
+    "policies": true,
+    "triggers": true,
+    "functions": true,
+    "constraints": false
+  },
+  "dataMatch": true,
+  "acl": {
+    "tables": false,
+    "columns": true,
+    "schemas": true,
+    "defaults": true,
+    "functions": true
+  },
+  "normalizedConstraintsMatch": true,
+  "effectiveTableAclMatch": true,
+  "completed": true,
+  "normalizations": [
+    "varchar array cast versus per-element text casts in literal CHECK lists",
+    "explicit owner-only default table ACL versus implicit default owner ACL"
+  ],
+  "encryptedEnvelope": true
+}

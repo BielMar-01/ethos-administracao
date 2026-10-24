@@ -1,0 +1,25 @@
+{
+  "isolated": true,
+  "realSupabaseUnchanged": true,
+  "passed": 18,
+  "checks": [
+    "empty real lists and strict pagination",
+    "owners create, edit, detail, search and persistence",
+    "unknown/protected fields and CSRF fail closed",
+    "cross-tenant read/update and stale-context requests denied",
+    "properties create their main unit and coproprietor relation",
+    "tenant, lease, participants and activation preserve original terms",
+    "read_own and financial roles cannot enter broad administrative writes",
+    "archive preserves database row and restricts new relationships",
+    "contract versions are append-only and concurrent versions remain unique",
+    "renewals trace successor leases and adjustments preserve base rent",
+    "inspections, final reports, maintenance and metadata preserve history",
+    "financial issue, exact allocation, receipt and reversal preserve history",
+    "concurrent allocations cannot overpay an installment",
+    "dashboard and reports use persisted scoped data, empty means zero",
+    "calendar is bounded, permission filtered and scoped",
+    "notifications are restricted to recipient, including same organization",
+    "settings persist safely without exposing security controls",
+    "missing runtime write grant fails closed without administrative fallback"
+  ]
+}

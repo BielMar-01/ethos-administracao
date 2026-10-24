@@ -13,7 +13,10 @@
     "lint": "eslint src tests scripts",
     "test:auth": "node --test tests/auth.integration.mjs",
     "test": "node --test tests/*.test.mjs",
-    "test:business": "node --test tests/business.integration.mjs"
+    "test:business": "node --test tests/business.integration.mjs",
+    "test:security": "node --test tests/security.integration.mjs tests/authorization.integration.mjs",
+    "test:consistency": "node --test tests/consistency.integration.mjs",
+    "test:resilience": "node scripts/review-resilience.mjs --server-outage"
   },
   "engines": {
     "node": ">=24"

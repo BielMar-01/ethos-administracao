@@ -116,6 +116,19 @@ async function request(
   expected = 200,
   headers = {},
 ) {
+  const consistency =
+    method !== "GET" ? { "idempotency-key": randomUUID() } : {};
+  if (
+    method === "PATCH" ||
+    (method === "POST" && path.split("/").length === 3)
+  ) {
+    const detail = await app.inject({
+      url: `/api/v1/${path.split("/").slice(0, 2).join("/")}`,
+      headers: { cookie: account.cookie },
+    });
+    if (detail.statusCode === 200 && detail.json().data?._etag)
+      consistency["if-match"] = detail.json().data._etag;
+  }
   const result = await app.inject({
     url: `/api/v1/${path}`,
     method,
@@ -125,6 +138,7 @@ async function request(
       origin: deps.origin,
       "x-csrf-token": account.csrf,
       "x-ethos-context": account.org,
+      ...consistency,
       ...headers,
     },
   });
@@ -794,6 +808,7 @@ test("business integration with restricted runtime, HTTP, persistence and tenant
               origin: deps.origin,
               "x-csrf-token": a.csrf,
               "x-ethos-context": a.org,
+              "idempotency-key": randomUUID(),
             },
           }),
         ),

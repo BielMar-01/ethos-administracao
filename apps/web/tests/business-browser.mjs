@@ -61,6 +61,26 @@ try {
   await row.getByRole("button", { name: "Detalhes", exact: true }).click();
   await expect(page.getByRole("dialog")).toContainText("11999990000");
   await page.keyboard.press("Escape");
+  const stale = await context.newPage();
+  await stale.goto(base + "/app/owners");
+  const staleRow = stale
+    .getByRole("row")
+    .filter({ has: stale.getByRole("cell", { name, exact: true }) });
+  await staleRow.getByRole("button", { name: "Editar", exact: true }).click();
+  await row.getByRole("button", { name: "Editar", exact: true }).click();
+  await page.getByLabel("Telefone", { exact: false }).fill("11888880000");
+  await page.getByRole("button", { name: "Salvar", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("salvo");
+  await stale.getByLabel("Telefone", { exact: false }).fill("11777770000");
+  await stale.getByRole("button", { name: "Salvar", exact: true }).click();
+  await expect(stale.getByRole("dialog").getByRole("alert")).toContainText(
+    "alterado por outra pessoa",
+  );
+  await expect(stale.getByLabel("Telefone", { exact: false })).toHaveValue(
+    "11777770000",
+  );
+  await stale.close();
+  checks.push("concurrent browser edit rejected with unsaved input preserved");
   await row.getByRole("button", { name: "Arquivar", exact: true }).click();
   await page.getByRole("button", { name: "Confirmar", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("concluída");

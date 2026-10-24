@@ -1,8 +1,14 @@
 import assert from "node:assert/strict";
 import { config } from "dotenv";
 import { createDatabaseClient } from "../dist/index.js";
+import { runtimeProfiles } from "./runtime-profiles.mjs";
 
 const local = process.argv.includes("--local-test");
+const profile = process.argv
+  .find((arg) => arg.startsWith("--profile="))
+  ?.slice("--profile=".length);
+if (!runtimeProfiles.includes(profile))
+  throw Error("EXPLICIT_RUNTIME_PROFILE_REQUIRED");
 const values = {};
 if (local) {
   values.AUTH_IDENTITY_DATABASE_URL =
@@ -47,7 +53,7 @@ try {
   const [rights] = await identity.$queryRawUnsafe(`SELECT
     has_table_privilege(current_user,'ethos_identity."AuthEvent"','INSERT') AS append,
     has_table_privilege(current_user,'ethos_identity."AuthEvent"','UPDATE') AS update,
-    has_table_privilege(current_user,'ethos."Property"','INSERT') AS business_write`);
+    has_column_privilege(current_user,'ethos."Property"','name','INSERT') AS business_write`);
   assert.deepEqual(rights, {
     append: true,
     update: false,
@@ -69,15 +75,16 @@ try {
   const [denied] = await tenant.$queryRawUnsafe(`SELECT
     has_schema_privilege(current_user,'ethos_identity','USAGE') AS identity,
     has_table_privilege(current_user,'ethos."User"','SELECT') AS global_identity,
-    has_table_privilege(current_user,'ethos."Property"','INSERT') AS business_write`);
+    has_column_privilege(current_user,'ethos."Property"','name','INSERT') AS business_write`);
   assert.deepEqual(denied, {
     identity: false,
     global_identity: false,
-    business_write: false,
+    business_write: profile !== "auth-only",
   });
   console.log(
     JSON.stringify({
       isolated: local,
+      profile,
       genuineRuntimeLogins: true,
       minimumPrivileges: true,
       noOrganizationDenied: true,

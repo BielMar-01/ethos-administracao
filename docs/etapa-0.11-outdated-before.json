@@ -1,0 +1,179 @@
+﻿{
+  "@tanstack/react-query": {
+    "current": "5.104.3",
+    "latest": "5.104.5",
+    "wanted": "5.104.3",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "dotenv": {
+    "current": "18.0.8",
+    "latest": "18.0.9",
+    "wanted": "18.0.8",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/api",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\api"
+      },
+      {
+        "name": "@ethos/database",
+        "location": "C:\\Projetos\\ethos-administracao\\packages\\database"
+      }
+    ]
+  },
+  "nodemailer": {
+    "current": "10.2.0",
+    "latest": "10.2.1",
+    "wanted": "10.2.0",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/api",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\api"
+      }
+    ]
+  },
+  "postcss": {
+    "current": "8.5.30",
+    "latest": "8.5.31",
+    "wanted": "8.5.30",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "react": {
+    "current": "19.3.0",
+    "latest": "19.3.1",
+    "wanted": "19.3.0",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "react-dom": {
+    "current": "19.3.0",
+    "latest": "19.3.1",
+    "wanted": "19.3.0",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "lucide-react": {
+    "current": "1.58.0",
+    "latest": "1.61.0",
+    "wanted": "1.58.0",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "turbo": {
+    "current": "2.10.12",
+    "latest": "2.11.10",
+    "wanted": "2.10.12",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "ethos-administracao",
+        "location": "C:\\Projetos\\ethos-administracao"
+      }
+    ]
+  },
+  "@hookform/resolvers": {
+    "current": "5.9.1",
+    "latest": "6.0.0",
+    "wanted": "5.9.1",
+    "isDeprecated": false,
+    "dependencyType": "dependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "@types/node": {
+    "current": "20.19.43",
+    "latest": "26.6.5",
+    "wanted": "20.19.43",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "eslint": {
+    "current": "9.39.5",
+    "latest": "10.13.0",
+    "wanted": "9.39.5",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "ethos-administracao",
+        "location": "C:\\Projetos\\ethos-administracao"
+      },
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "typescript": {
+    "current": "5.9.3",
+    "latest": "7.0.2",
+    "wanted": "5.9.3",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/web",
+        "location": "C:\\Projetos\\ethos-administracao\\apps\\web"
+      }
+    ]
+  },
+  "prisma": {
+    "current": "7.10.1",
+    "latest": "8.0.0-rc.26",
+    "wanted": "7.10.1",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies",
+    "dependentPackages": [
+      {
+        "name": "@ethos/database",
+        "location": "C:\\Projetos\\ethos-administracao\\packages\\database"
+      }
+    ]
+  }
+}

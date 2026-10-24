@@ -2,6 +2,12 @@ packages:
   - "apps/*"
   - "packages/*"
 
+# Targeted compatible security fixes; keep fast-uri major versions separate.
+overrides:
+  "lodash@<4.18.1": "4.18.1"
+  "fast-uri@>=3 <4": "3.1.9"
+  "fast-uri@>=4 <5": "4.2.3"
+
 allowBuilds:
   esbuild: false
   unrs-resolver: true

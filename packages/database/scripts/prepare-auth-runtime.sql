@@ -3,6 +3,26 @@
 -- Existing memberships, ownership or elevated attributes require manual review.
 BEGIN;
 SET LOCAL lock_timeout = '5s';
+-- Fail closed if this legacy read-only reconciliation would revoke approved writes.
+-- The explicit business-profile builder reapplies the reviewed allowlist atomically.
+DO $$
+BEGIN
+  IF coalesce(current_setting('ethos.provisioning_profile',true),'') NOT IN ('business-0.10.1','business-0.11-isolated')
+    AND EXISTS (
+      SELECT 1 FROM pg_roles r JOIN pg_attribute a ON a.attnum>0 AND NOT a.attisdropped
+      JOIN pg_class c ON c.oid=a.attrelid JOIN pg_namespace n ON n.oid=c.relnamespace
+      WHERE r.rolname='ethos_tenant_runtime' AND n.nspname='ethos' AND c.relkind='r'
+      AND (has_column_privilege(r.oid,c.oid,a.attnum,'INSERT') OR has_column_privilege(r.oid,c.oid,a.attnum,'UPDATE'))
+    ) THEN RAISE EXCEPTION 'EXPLICIT_BUSINESS_PROFILE_REQUIRED';
+  END IF;
+  IF current_setting('ethos.provisioning_profile',true) IS DISTINCT FROM 'business-0.11-isolated'
+    AND to_regclass('ethos_technical."MutationReceipt"') IS NOT NULL
+    AND EXISTS (SELECT 1 FROM information_schema.column_privileges
+      WHERE grantee='ethos_tenant_runtime' AND table_schema='ethos_technical'
+        AND table_name='MutationReceipt' AND privilege_type='INSERT') THEN
+    RAISE EXCEPTION 'CONSISTENCY_PROFILE_REQUIRED';
+  END IF;
+END $$;
 DO $$
 DECLARE role_name text;
 BEGIN

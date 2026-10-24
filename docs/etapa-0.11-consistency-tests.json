@@ -1,0 +1,24 @@
+{
+  "isolated": true,
+  "passed": true,
+  "checks": [
+    "missing key blocked",
+    "identical replay returns same record",
+    "different input blocked",
+    "If-Match required",
+    "stale edit blocked",
+    "foreign organization blocked",
+    "concurrent retries create one effect and one receipt",
+    "failed requests leave no receipt",
+    "idempotency keys scoped to organization and membership",
+    "competing editors cannot overwrite the winning revision",
+    "concurrent contract version replay creates exactly one historical version",
+    "settings reject stale edits",
+    "revoked session cannot replay a receipt",
+    "technical receipts deny UPDATE and DELETE",
+    "revision identity columns protected",
+    "technical RLS denies missing context and foreign organizations",
+    "same organization receipts are private to their membership",
+    "injected post-insert application failure rolls back effect, revision and receipt"
+  ]
+}

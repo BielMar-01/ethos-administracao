@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { decryptBackup } from "./backup-envelope.mjs";
 import {
   applicationCatalogSql,
   applicationAclSql,
@@ -19,7 +20,20 @@ assert(/^stage-0\.10\.1-[0-9a-f-]{36}$/.test(id ?? ""));
 const root = fileURLToPath(new URL("../../../", import.meta.url)),
   folder = resolve(root, ".backups", id),
   manifest = JSON.parse(readFileSync(resolve(folder, "manifest.json"), "utf8")),
-  dump = readFileSync(resolve(folder, "application.dump"));
+  archive = process.argv.includes("--encrypted")
+    ? JSON.parse(
+        decryptBackup(
+          readFileSync(
+            resolve(root, ".backups/encrypted-0.11/application.enc"),
+          ),
+          readFileSync(resolve(root, ".secrets/backup-0.11.key")),
+        ).toString("utf8"),
+      )
+    : undefined,
+  dump = archive
+    ? Buffer.from(archive.dump, "base64")
+    : readFileSync(resolve(folder, "application.dump"));
+if (archive) assert.deepEqual(archive.manifest, manifest);
 assert.equal(manifest.projectId, "wszrtvgjcgpgntsssbhd");
 assert.equal(createHash("sha256").update(dump).digest("hex"), manifest.sha256);
 let container,
@@ -150,8 +164,21 @@ try {
     "varchar array cast versus per-element text casts in literal CHECK lists",
     "explicit owner-only default table ACL versus implicit default owner ACL",
   ];
+  if (process.argv.includes("--encrypted")) {
+    report.encryptedEnvelope = true;
+    const encryptionPath = resolve(root, "docs/etapa-0.11-encryption.json");
+    const encryption = JSON.parse(readFileSync(encryptionPath, "utf8"));
+    encryption.recoveryPending = !report.completed;
+    encryption.restoreEvidence = "docs/etapa-0.11-restore.json";
+    writeFileSync(encryptionPath, JSON.stringify(encryption, null, 2) + "\n");
+  }
   writeFileSync(
-    resolve(root, "docs/etapa-0.10.1-restore.json"),
+    resolve(
+      root,
+      process.argv.includes("--encrypted")
+        ? "docs/etapa-0.11-restore.json"
+        : "docs/etapa-0.10.1-restore.json",
+    ),
     JSON.stringify(report, null, 2),
   );
   console.log(JSON.stringify(report));

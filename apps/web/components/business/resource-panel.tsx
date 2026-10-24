@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   children,
@@ -62,21 +62,23 @@ function Detail({
       ) : (
         <>
           <dl className="grid gap-4 sm:grid-cols-2">
-            {Object.entries(query.data.data).map(([key, value]) => (
-              <div
-                key={key}
-                className="min-w-0 rounded-lg border border-border p-3"
-              >
-                <dt className="text-xs text-muted">
-                  {d.fields.find((f) => f.name === key)?.label ??
-                    labels[key] ??
-                    key}
-                </dt>
-                <dd className="mt-1 whitespace-pre-wrap break-words text-sm">
-                  {display(value)}
-                </dd>
-              </div>
-            ))}
+            {Object.entries(query.data.data)
+              .filter(([key]) => !key.startsWith("_"))
+              .map(([key, value]) => (
+                <div
+                  key={key}
+                  className="min-w-0 rounded-lg border border-border p-3"
+                >
+                  <dt className="text-xs text-muted">
+                    {d.fields.find((f) => f.name === key)?.label ??
+                      labels[key] ??
+                      key}
+                  </dt>
+                  <dd className="mt-1 whitespace-pre-wrap break-words text-sm">
+                    {display(value)}
+                  </dd>
+                </div>
+              ))}
           </dl>
           {children[resource]?.map((child) => (
             <section key={child} className="mt-8">
@@ -111,13 +113,23 @@ function ActionDialog({
     [endsOn, setEnd] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
+  const attempt = useRef<{ body: string; key: string } | null>(null);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
     try {
+      const body = {
+        ...(reason ? { reason } : {}),
+        ...(endsOn ? { endsOn } : {}),
+      };
+      const serialized = JSON.stringify(body);
+      if (attempt.current?.body !== serialized)
+        attempt.current = { body: serialized, key: crypto.randomUUID() };
       await businessRequest(`${resource}/${row.id}/${action}`, org, {
         method: "POST",
-        body: { ...(reason ? { reason } : {}), ...(endsOn ? { endsOn } : {}) },
+        body,
+        ifMatch: typeof row._etag === "string" ? row._etag : undefined,
+        idempotencyKey: attempt.current.key,
       });
       await client.invalidateQueries({ queryKey: [org] });
       onSaved();
