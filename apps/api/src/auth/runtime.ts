@@ -1,6 +1,7 @@
 import { createDatabaseClient } from "@ethos/database";
 import nodemailer from "nodemailer";
 import type { AuthDependencies } from "./types.js";
+import { runtimeConfiguration } from "../config.js";
 
 export function authRuntime(environment: NodeJS.ProcessEnv = process.env) {
   const production = environment.NODE_ENV === "production";
@@ -30,16 +31,21 @@ export function authRuntime(environment: NodeJS.ProcessEnv = process.env) {
     (production && environment.ETHOS_LOCAL_DATABASE === "1")
   )
     throw Error("AUTH_CONFIGURATION_INVALID");
+  const config = runtimeConfiguration(environment);
+  const port = Number(environment.SMTP_PORT ?? 587);
+  if (![465, 587].includes(port)) throw Error("SMTP_TLS_PORT_REQUIRED");
+  if (Boolean(environment.SMTP_USER) !== Boolean(environment.SMTP_PASSWORD))
+    throw Error("SMTP_CONFIGURATION_INVALID");
   const identity = createDatabaseClient({
     connectionString: identityUrl,
     allowLocalPlaintext: environment.ETHOS_LOCAL_DATABASE === "1",
+    maxConnections: config.poolSize,
   });
   const tenant = createDatabaseClient({
     connectionString: tenantUrl,
     allowLocalPlaintext: environment.ETHOS_LOCAL_DATABASE === "1",
+    maxConnections: config.poolSize,
   });
-  const port = Number(environment.SMTP_PORT ?? 587);
-  if (![465, 587].includes(port)) throw Error("SMTP_TLS_PORT_REQUIRED");
   const transporter = nodemailer.createTransport({
     host,
     port,

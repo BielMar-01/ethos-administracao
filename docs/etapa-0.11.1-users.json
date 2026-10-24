@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-24T11:53:41.821Z",
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "sourceReadOnly": true,
+  "sourceWrites": false,
+  "usersCount": 0,
+  "managedSupabaseAuthUsers": 0,
+  "managedAuthCountStatus": "count_only",
+  "identitySystem": "own authentication in ethos.User and ethos_identity; no automatic Supabase Auth linkage",
+  "superAdmins": 0,
+  "organizationAdmins": 0,
+  "organizations": [],
+  "users": [],
+  "memberships": [],
+  "pendingMailCount": 0,
+  "credentialValuesSelected": false,
+  "realLoginAttempted": false,
+  "limitations": [
+    "password correctness is not tested without operator-held credentials",
+    "an unexpired session count is not proof of a successful real login",
+    "account/IP throttle and external email delivery are not exercised"
+  ]
+}

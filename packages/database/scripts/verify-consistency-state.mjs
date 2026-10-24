@@ -1,6 +1,6 @@
 import pg from "pg";
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import assert from "node:assert/strict";
 const url =
   process.env.ETHOS_AUTH_TEST_DATABASE_URL ??
@@ -16,10 +16,21 @@ try {
   await c.connect();
   const migrations = (
     await c.query(
-      "SELECT migration_name,checksum,finished_at,rolled_back_at FROM ethos_technical._prisma_migrations ORDER BY migration_name",
+      "SELECT migration_name,checksum,finished_at,rolled_back_at FROM ethos_technical._prisma_migrations WHERE rolled_back_at IS NULL ORDER BY migration_name",
     )
   ).rows;
-  assert.equal(migrations.length, 6);
+  const expected = readdirSync(
+    new URL("../prisma/migrations/", import.meta.url),
+    { withFileTypes: true },
+  )
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+  assert.deepEqual(
+    migrations.map((migration) => migration.migration_name),
+    expected,
+    "PENDING_OR_UNEXPECTED_MIGRATIONS",
+  );
   for (const m of migrations) {
     assert.ok(m.finished_at);
     assert.equal(m.rolled_back_at, null);
@@ -50,6 +61,11 @@ try {
     migrations: migrations.map((m) => m.migration_name),
     allChecksumsMatch: true,
     pendingMigrations: 0,
+    rolledBackHistoricalAttempts: (
+      await c.query(
+        "SELECT count(*)::int AS count FROM ethos_technical._prisma_migrations WHERE rolled_back_at IS NOT NULL",
+      )
+    ).rows[0].count,
     applicationTables: summary.tables,
     rlsEnabledAndForced: summary.forced,
     tenantDeleteGrants: deletes,

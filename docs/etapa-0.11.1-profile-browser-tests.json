@@ -1,0 +1,19 @@
+{
+  "isolated": true,
+  "realAccountsUsed": false,
+  "passed": 12,
+  "checks": [
+    "ADMIN_ORGANIZACAO: login, organization, permitted/forbidden modules and refresh validated",
+    "ADMIN_ORGANIZACAO: logout revokes access to protected route",
+    "GESTOR: login, organization, permitted/forbidden modules and refresh validated",
+    "GESTOR: logout revokes access to protected route",
+    "FINANCEIRO: login, organization, permitted/forbidden modules and refresh validated",
+    "FINANCEIRO: logout revokes access to protected route",
+    "PROPRIETARIO: login, organization, permitted/forbidden modules and refresh validated",
+    "PROPRIETARIO: logout revokes access to protected route",
+    "INQUILINO: login, organization, permitted/forbidden modules and refresh validated",
+    "INQUILINO: logout revokes access to protected route",
+    "SUPER_ADMIN: MFA forced, explicit platform access audited, no implicit organization bypass",
+    "SUPER_ADMIN: logout revokes access to protected route"
+  ]
+}

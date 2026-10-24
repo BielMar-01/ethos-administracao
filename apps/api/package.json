@@ -16,7 +16,9 @@
     "test:business": "node --test tests/business.integration.mjs",
     "test:security": "node --test tests/security.integration.mjs tests/authorization.integration.mjs",
     "test:consistency": "node --test tests/consistency.integration.mjs",
-    "test:resilience": "node scripts/review-resilience.mjs --server-outage"
+    "test:resilience": "node scripts/review-resilience.mjs --server-outage",
+    "bootstrap:access": "node scripts/bootstrap-access.mjs",
+    "test:bootstrap": "node --test tests/admin-bootstrap.integration.mjs"
   },
   "engines": {
     "node": ">=24"

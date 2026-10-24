@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-24T11:23:20.730Z",
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "sourceConnection": false,
+  "sourceWrites": false,
+  "archiveSha256": "195d2f2a2bf1c531f74337134f9b06130a152f263029e08a1ce6bda2f5b5f3d8",
+  "encryptedSha256": "4cfcbd4c16045a1196935d263f9c683e8bcc8191aea03a2e7f54dd121dc4f7fd",
+  "completed": true,
+  "tables": 44,
+  "policies": 74,
+  "catalogDataAndEffectiveAclMatch": true,
+  "encryptedArchiveRestored": true,
+  "isolated": true,
+  "networkNone": false,
+  "loopbackOnly": true,
+  "retainedForSimulation": true,
+  "container": "298ef163fa0cf92e0f1261b45411b4e9ac58af64201ad2996df0a421929c47a0",
+  "normalizations": [
+    "equivalent literal CHECK casts",
+    "owner-only default table ACL representation"
+  ]
+}

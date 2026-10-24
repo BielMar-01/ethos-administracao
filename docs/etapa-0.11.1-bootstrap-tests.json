@@ -1,0 +1,24 @@
+{
+  "isolated": true,
+  "realUsersModified": false,
+  "passed": true,
+  "checks": [
+    "strong password required",
+    "platform and tenant roles separated",
+    "runtime cannot bootstrap",
+    "concurrent first admin requests create exactly one identity/grant",
+    "platform and authentication audit recorded",
+    "Argon2id and pending email by default",
+    "duplicate first admin blocked",
+    "single use confirmation required",
+    "SUPER_ADMIN cannot bypass MFA setup",
+    "MFA enrollment unlocks existing platform authentication",
+    "ADMIN_ORGANIZACAO: new identity, correct membership, login and permissions",
+    "GESTOR: new identity, correct membership, login and permissions",
+    "FINANCEIRO: new identity, correct membership, login and permissions",
+    "PROPRIETARIO: new identity, correct membership, login and permissions",
+    "INQUILINO: new identity, correct membership, login and permissions",
+    "invalid organization and handoff failure roll back",
+    "no duplicate platform administrator or identity escalation"
+  ]
+}

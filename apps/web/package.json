@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "node --import ./tests/register.mjs --test ./tests/*.test.mjs",
     "test:browser": "node ./tests/browser-smoke.mjs",
     "test:visual": "node ./tests/visual-smoke.mjs",
     "test:auth:browser": "node ./tests/auth-browser.mjs",
-    "test:business:browser": "node tests/business-browser.mjs"
+    "test:business:browser": "node tests/business-browser.mjs",
+    "test:access:browser": "node tests/access-profiles-browser.mjs"
   },
   "dependencies": {
     "@ethos/contracts": "workspace:*",

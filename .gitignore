@@ -45,3 +45,4 @@ Thumbs.db
 **/.git-backup-web
 **/.git-backup-*
 apps/web/next-env.d.ts
+.artifacts/

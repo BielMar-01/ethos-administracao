@@ -1,0 +1,54 @@
+{
+  "scope": "local and disposable PostgreSQL only",
+  "supabaseConnections": 0,
+  "deployments": 0,
+  "remoteMigrationsOrGrants": 0,
+  "frozenInstall": "passed",
+  "lint": "passed: four packages and root scripts",
+  "typecheck": "passed: four packages",
+  "prismaGenerationRace": "detected during final review; own build dependency added before typecheck; eight tasks subsequently passed",
+  "build": "passed: four packages",
+  "prismaValidate": "passed",
+  "prismaGenerate": "passed",
+  "dependencyAudit": "no known vulnerabilities found",
+  "unitTests": { "database": 21, "api": 12, "web": 28, "ciAndSecrets": 2 },
+  "integration": {
+    "auth": 9,
+    "business": 1,
+    "security": 4,
+    "authorization": 1,
+    "authorizationAssertions": 170,
+    "consistency": 1,
+    "infrastructureWindows": { "passed": 2, "skippedPosixSignal": 1 },
+    "infrastructureLinux": { "passed": 3, "skipped": 0 },
+    "schemaMismatchRefused": true,
+    "disposableTableNameRestored": true,
+    "posixSigtermExitCode": 0,
+    "drainingAndStoppedEventsObserved": true
+  },
+  "browser": { "authentication": 12, "profiles": 12, "business": 8 },
+  "image": {
+    "build": "passed",
+    "runtimeUid": 1000,
+    "privateArtifactsAbsent": true,
+    "databasePackageResolvable": true,
+    "runtimeImageInfrastructureTestsPassed": 3,
+    "readOnlyFilesystemSmokePassed": true,
+    "published": false
+  },
+  "ci": {
+    "prepared": true,
+    "actionRefsPinned": true,
+    "contentsReadOnly": true,
+    "deploymentWorkflow": false,
+    "remoteRun": "verify after authorized push"
+  },
+  "limitations": [
+    "Previous intermittent MFA failure remains unexplained despite passing isolated suites",
+    "First browser harness run exceeded readiness deadline; complete rerun passed after increasing startup allowance",
+    "No public HTTPS, hosting, operational SMTP or external monitoring validation",
+    "Stage 0.11.1 activation remains deferred",
+    "Secret scanning is pattern-based, not proof of absence",
+    "Image retains workspace dependency store; pruning and OS vulnerability scan remain future publication checks"
+  ]
+}

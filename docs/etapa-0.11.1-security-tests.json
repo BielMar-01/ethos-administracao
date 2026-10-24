@@ -1,0 +1,10 @@
+{
+  "isolated": true,
+  "passed": 4,
+  "checks": [
+    "disabled users and all-device revocation reject old access and refresh",
+    "wrong CSRF leaves token unused and absolute expiry denies both tokens",
+    "login and recovery responses do not disclose account existence",
+    "suspended membership or organization denies existing session without stale authorization"
+  ]
+}

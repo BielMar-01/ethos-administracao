@@ -1,0 +1,119 @@
+{
+  "at": "2026-10-24T11:57:24.371Z",
+  "blocksPrepared": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G"
+  ],
+  "blocksNotExecuted": [
+    "H",
+    "I"
+  ],
+  "realDatabaseWrites": false,
+  "realUserChanges": false,
+  "commit": false,
+  "push": false,
+  "deploy": false,
+  "results": {
+    "databaseUnitTests": 21,
+    "apiUnitTests": 7,
+    "authIntegrationTests": 9,
+    "securityIntegrationTests": 5,
+    "rbacMatrixEntries": 170,
+    "businessRegressionGroups": 18,
+    "consistencyAccepted": true,
+    "bootstrapDedicatedIntegrationPassed": true,
+    "profileBrowserScenarios": 12,
+    "businessBrowserScenarios": 8,
+    "authBrowserScenarios": 12,
+    "frontendUnitTests": 27,
+    "lintPackages": [
+      "api",
+      "database",
+      "contracts",
+      "web"
+    ],
+    "typecheckPassed": true,
+    "buildPackages": [
+      "database",
+      "contracts",
+      "api",
+      "web"
+    ],
+    "prismaValidatePassed": true,
+    "prismaGeneratePassed": true,
+    "encryptedRestorePassed": true,
+    "realSourcePreflightReadOnlyPassed": true,
+    "secretScanPassed": true,
+    "lastPreflightReadOnlyPassed": true
+  },
+  "failuresAndLimits": [
+    {
+      "suite": "auth-browser",
+      "initialAttempt": "timeout after MFA acknowledgement",
+      "repeatAfterFixtureRestart": "passed",
+      "cause": "not proven; no initial HTTP trace captured",
+      "productAuthenticationChanged": false
+    },
+    {
+      "suite": "verify-consistency-state",
+      "initialAttempt": "counted rolled-back history as active",
+      "fix": "exclude rolled_back_at IS NOT NULL and report historical attempts",
+      "rerun": "passed on restored clone",
+      "historyModified": false
+    },
+    "normal runtime requires SMTP configuration; local disabled-mail mode is proposed, not implemented",
+    "no real accounts or organizations exist; real login not validated",
+    "off-host backup remains deferred"
+  ],
+  "files": [
+    "apps/api/.env.example",
+    "apps/api/package.json",
+    "apps/api/scripts/auth-test-server.mjs",
+    "apps/api/scripts/bootstrap-access.mjs",
+    "apps/api/src/auth/admin-bootstrap.ts",
+    "apps/api/tests/admin-bootstrap.integration.mjs",
+    "apps/api/tests/admin-bootstrap.test.mjs",
+    "apps/web/package.json",
+    "apps/web/tests/access-profiles-browser.mjs",
+    "apps/web/tests/auth-browser.mjs",
+    "docs/etapa-0.11.1-api-tests.json",
+    "docs/etapa-0.11.1-audit.json",
+    "docs/etapa-0.11.1-auth-browser-tests.json",
+    "docs/etapa-0.11.1-authorization-tests.json",
+    "docs/etapa-0.11.1-backup.json",
+    "docs/etapa-0.11.1-bootstrap-tests.json",
+    "docs/etapa-0.11.1-business-browser-tests.json",
+    "docs/etapa-0.11.1-consistency-tests.json",
+    "docs/etapa-0.11.1-database-state.json",
+    "docs/etapa-0.11.1-preflight.json",
+    "docs/etapa-0.11.1-profile-browser-tests.json",
+    "docs/etapa-0.11.1-restore.json",
+    "docs/etapa-0.11.1-runtime-readiness.json",
+    "docs/etapa-0.11.1-script-hashes.json",
+    "docs/etapa-0.11.1-security-tests.json",
+    "docs/etapa-0.11.1-simulation-restore.json",
+    "docs/etapa-0.11.1-simulation.json",
+    "docs/etapa-0.11.1-users.json",
+    "docs/etapa-0.11.1-validation.json",
+    "docs/etapa-0.11.1.md",
+    "packages/database/scripts/access-activation-plan.mjs",
+    "packages/database/scripts/access-preparation-common.mjs",
+    "packages/database/scripts/audit-access-preparation.mjs",
+    "packages/database/scripts/audit-access-users.mjs",
+    "packages/database/scripts/prepare-access-backup.mjs",
+    "packages/database/scripts/rehearse-access-backup.mjs",
+    "packages/database/scripts/simulate-access-activation.mjs",
+    "packages/database/scripts/verify-consistency-state.mjs",
+    "packages/database/tests/access-preparation.test.mjs"
+  ],
+  "cleanup": {
+    "testServersStopped": true,
+    "disposableContainersAndVolumesRemoved": true,
+    "protectedBackupsPreserved": true
+  }
+}

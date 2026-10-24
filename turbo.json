@@ -1,22 +1,26 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["APP_ENV", "NODE_ENV", "ETHOS_*", "EXPECTED_DATABASE_PROJECT_REF", "DATABASE_URL", "DIRECT_DATABASE_URL", "AUTH_*", "SMTP_*", "WEB_ORIGIN", "CORS_ORIGINS", "API_*", "TRUST_PROXY"],
   "tasks": {
     "dev": {
       "cache": false,
       "persistent": true
     },
     "build": {
+      "cache": false,
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "cache": false,
+      "dependsOn": ["^build", "build"]
     },
     "test": {
-      "dependsOn": ["^test"]
+      "cache": false,
+      "dependsOn": ["^build", "build"]
     }
   }
 }

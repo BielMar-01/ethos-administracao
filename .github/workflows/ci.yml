@@ -1,0 +1,59 @@
+name: Quality
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      APP_ENV: development
+      ETHOS_LOCAL_DATABASE: "1"
+      ETHOS_API_ORIGIN: http://127.0.0.1:3339
+      ETHOS_WEB_ORIGIN: http://localhost:3099
+    services:
+      postgres:
+        image: postgres:17.11@sha256:b8faeff7712663c2773a190181e1246e37e364b887611c04658c28b44e2408fe
+        env:
+          POSTGRES_PASSWORD: ethos-local-disposable
+          POSTGRES_DB: ethos_auth_test
+        ports: ["55439:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d ethos_auth_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+        with:
+          version: 11.23.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24.19.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:secrets
+      - run: pnpm check:dependencies
+      - run: pnpm --filter @ethos/database db:validate
+        env:
+          DIRECT_DATABASE_URL: postgresql://postgres:ethos-local-disposable@127.0.0.1:55439/ethos_auth_test
+      - run: pnpm build
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm test:integration
+      - run: pnpm --filter @ethos/web exec playwright install --with-deps chromium
+      - run: pnpm test:browser
+      - run: docker build --file apps/api/Dockerfile --tag ethos-api:ci .
+      - name: Runtime image boundaries
+        run: >-
+          docker run --rm --network none --read-only --cap-drop ALL
+          --security-opt no-new-privileges --entrypoint node ethos-api:ci
+          -e "const fs=require('fs');if(process.getuid()===0||['.env','.secrets','.backups','apps/api/.env','packages/database/.env','packages/database/scripts'].some(p=>fs.existsSync(p)))process.exit(1);require.resolve('@ethos/database',{paths:['/workspace/apps/api']});"

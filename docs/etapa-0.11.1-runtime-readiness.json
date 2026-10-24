@@ -1,0 +1,11 @@
+{
+  "runtimeUrlsPresent": true,
+  "cookieSecretConfigured": true,
+  "encryptionKeyConfigured": true,
+  "webOriginConfigured": false,
+  "smtpHostConfigured": false,
+  "smtpFromConfigured": false,
+  "valuesPrinted": false,
+  "configurationChanged": false,
+  "normalRuntimeStarted": false
+}

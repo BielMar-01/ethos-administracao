@@ -12,12 +12,14 @@ import { AuthError } from "./auth/security.js";
 import { registerBusiness } from "./business/routes.js";
 import { BusinessError } from "./business/service.js";
 import { randomUUID } from "node:crypto";
+import { checkRuntimeSchema, readinessProbe } from "./readiness.js";
 
 export async function buildApp(
   options: {
     auth?: AuthDependencies;
     logger?: boolean;
     logStream?: { write: (message: string) => void };
+    allowedOrigins?: string[];
   } = {},
 ) {
   const app = Fastify({
@@ -45,6 +47,10 @@ export async function buildApp(
     genReqId: () => randomUUID(),
     bodyLimit: 65536,
     trustProxy: false,
+    connectionTimeout: 10_000,
+    requestTimeout: 30_000,
+    keepAliveTimeout: 5_000,
+    return503OnClosing: true,
   });
   app.addHook("onRequest", async (request, reply) => {
     reply.header("x-request-id", request.id);
@@ -57,12 +63,12 @@ export async function buildApp(
   );
 
   // CORS: origens autorizadas
-  const allowedOrigins = (
-    process.env.CORS_ORIGINS ?? "http://localhost:3000,http://127.0.0.1:3000"
-  )
-    .split(",")
-    .map((origin) => origin.trim())
-    .filter(Boolean);
+  const allowedOrigins =
+    options.allowedOrigins ??
+    (process.env.CORS_ORIGINS ?? "http://localhost:3000,http://127.0.0.1:3000")
+      .split(",")
+      .map((origin) => origin.trim())
+      .filter(Boolean);
 
   await app.register(cors, {
     origin: allowedOrigins,
@@ -221,6 +227,9 @@ export async function buildApp(
   );
 
   if (options.auth) {
+    app.addHook("onReady", async () => {
+      await checkRuntimeSchema(options.auth!);
+    });
     const auth = await registerAuth(app, options.auth);
     await registerBusiness(app, options.auth, auth);
     let maintenance: Promise<void> | undefined;
@@ -257,5 +266,27 @@ export async function buildApp(
       }),
     );
   }
+  let draining = false;
+  const counters = { requests: 0, rejected: 0, failures: 0 };
+  app.decorate("operationalSnapshot", () => ({ ...counters, draining }));
+  app.addHook("onResponse", async (_request, reply) => {
+    counters.requests++;
+    if (reply.statusCode >= 400) counters.rejected++;
+    if (reply.statusCode >= 500) counters.failures++;
+  });
+  const probe = readinessProbe(async () => {
+    if (!options.auth) throw Error("AUTH_UNAVAILABLE");
+    await checkRuntimeSchema(options.auth);
+  });
+  app.addHook("preClose", async () => {
+    draining = true;
+  });
+  app.get("/api/v1/health/ready", async (_request, reply) => {
+    reply.header("cache-control", "no-store");
+    const ok = !draining && (await probe());
+    return reply
+      .status(ok ? 200 : 503)
+      .send({ success: ok, data: { status: ok ? "ready" : "unavailable" } });
+  });
   return app;
 }

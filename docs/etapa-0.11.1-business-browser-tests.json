@@ -1,0 +1,15 @@
+{
+  "isolated": true,
+  "passed": 8,
+  "checks": [
+    "owner creation persists after full reload through BFF/API/restricted PostgreSQL",
+    "owner edit and server search work",
+    "concurrent browser edit rejected with unsaved input preserved",
+    "details and archive preserve history",
+    "13 integrated modules render without overflow at 360px",
+    "13 integrated modules render without overflow at 1440px",
+    "light and dark themes preserved",
+    "organization switch discards prior cache and cannot expose other organization record"
+  ],
+  "consoleErrors": []
+}

@@ -1,0 +1,19 @@
+{
+  "isolated": true,
+  "sourceConnection": false,
+  "migrations": [
+    "20261022000000_init_infrastructure",
+    "20261022010000_multi_tenant_model",
+    "20261022020000_auth_identity",
+    "20261022021000_auth_event_reason",
+    "20261022022000_auth_privilege_revocation",
+    "20261024000000_mutation_consistency"
+  ],
+  "allChecksumsMatch": true,
+  "pendingMigrations": 0,
+  "rolledBackHistoricalAttempts": 1,
+  "applicationTables": 46,
+  "rlsEnabledAndForced": 44,
+  "tenantDeleteGrants": 0,
+  "productionUnchanged": true
+}

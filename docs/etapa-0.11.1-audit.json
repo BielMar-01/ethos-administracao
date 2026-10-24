@@ -1,0 +1,1482 @@
+{
+  "at": "2026-10-24T11:42:47.008Z",
+  "projectId": "wszrtvgjcgpgntsssbhd",
+  "sourceReadOnly": true,
+  "sourceWrites": false,
+  "tls": {
+    "direct": true,
+    "ipv6": true,
+    "encrypted": true,
+    "authorized": true,
+    "backendTls": true
+  },
+  "migrations": {
+    "applied": [
+      "20261022000000_init_infrastructure",
+      "20261022010000_multi_tenant_model",
+      "20261022020000_auth_identity",
+      "20261022021000_auth_event_reason",
+      "20261022022000_auth_privilege_revocation"
+    ],
+    "pending": ["20261024000000_mutation_consistency"],
+    "checksumsMatch": true
+  },
+  "businessPrivilegesMatchApproved": true,
+  "currentWrites": [
+    {
+      "table": "Charge",
+      "column": "amount",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Charge",
+      "column": "code",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Charge",
+      "column": "competence",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Charge",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Charge",
+      "column": "kind",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Charge",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Charge",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Charge",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Contract",
+      "column": "code",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Contract",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Contract",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Contract",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Contract",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "ContractVersion",
+      "column": "content",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "contentHash",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "contractId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "validFrom",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "ContractVersion",
+      "column": "version",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "bucket",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "contractVersionId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "inspectionReportId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "kind",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "maintenanceRequestId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "mimeType",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "objectKey",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "originalName",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "ownerId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "receiptId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "sha256",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "sizeBytes",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "storageProvider",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "tenantId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Document",
+      "column": "unitId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Inspection",
+      "column": "completedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Inspection",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Inspection",
+      "column": "kind",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Inspection",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Inspection",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Inspection",
+      "column": "scheduledAt",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Inspection",
+      "column": "unitId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "InspectionReport",
+      "column": "content",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "InspectionReport",
+      "column": "finalizedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "InspectionReport",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "InspectionReport",
+      "column": "inspectionId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "InspectionReport",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "InspectionReport",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "InspectionReport",
+      "column": "version",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Installment",
+      "column": "amount",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Installment",
+      "column": "chargeId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Installment",
+      "column": "dueOn",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Installment",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Installment",
+      "column": "number",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Installment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "baseRent",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "code",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "currency",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "dueDay",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "endedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Lease",
+      "column": "endsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "startsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Lease",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Lease",
+      "column": "unitId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "endsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "newRent",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "startsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "LeaseRenewal",
+      "column": "successorLeaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "endsOn",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "role",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "startsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "LeaseTenant",
+      "column": "tenantId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "actualCost",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "category",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "completedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "description",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "estimatedCost",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "priority",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "title",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "MaintenanceRequest",
+      "column": "unitId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "kind",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "message",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "payload",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "readAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Notification",
+      "column": "recipientMembershipId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Notification",
+      "column": "title",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Organization",
+      "column": "name",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "OrganizationSettings",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "OrganizationSettings",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "OrganizationSettings",
+      "column": "preferences",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "OrganizationSettings",
+      "column": "timezone",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "email",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Owner",
+      "column": "kind",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "name",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Owner",
+      "column": "phone",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Owner",
+      "column": "taxIdentifier",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Payment",
+      "column": "amount",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "code",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "method",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "paidAt",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Payment",
+      "column": "reversedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Payment",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "PaymentAllocation",
+      "column": "amount",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PaymentAllocation",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PaymentAllocation",
+      "column": "installmentId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PaymentAllocation",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PaymentAllocation",
+      "column": "paymentId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Photo",
+      "column": "caption",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Photo",
+      "column": "documentId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Photo",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Photo",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Photo",
+      "column": "sortOrder",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Photo",
+      "column": "takenAt",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Photo",
+      "column": "unitId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Property",
+      "column": "address",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Property",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Property",
+      "column": "code",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Property",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Property",
+      "column": "kind",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Property",
+      "column": "name",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Property",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "endsOn",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "ownerId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "percentage",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "propertyId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyOwnership",
+      "column": "startsOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "area",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "code",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "isMain",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "name",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "PropertyUnit",
+      "column": "propertyId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "issuedAt",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "number",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "paymentId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "snapshot",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Receipt",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Receipt",
+      "column": "voidReason",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Receipt",
+      "column": "voidedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "appliedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "effectiveOn",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "indexName",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "leaseId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "newRent",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "percentage",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "previousRent",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "RentAdjustment",
+      "column": "status",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "archivedAt",
+      "insert": false,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "email",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "id",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Tenant",
+      "column": "kind",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "name",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "organizationId",
+      "insert": true,
+      "update": false
+    },
+    {
+      "table": "Tenant",
+      "column": "phone",
+      "insert": true,
+      "update": true
+    },
+    {
+      "table": "Tenant",
+      "column": "taxIdentifier",
+      "insert": true,
+      "update": true
+    }
+  ],
+  "roles": [
+    {
+      "rolname": "ethos_auth_runtime",
+      "rolcanlogin": true,
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolreplication": false,
+      "rolinherit": false
+    },
+    {
+      "rolname": "ethos_tenant_runtime",
+      "rolcanlogin": true,
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolreplication": false,
+      "rolinherit": false
+    }
+  ],
+  "runtimeMemberships": 0,
+  "runtimeOwnedRelationsSchemasFunctions": 0,
+  "tables": [
+    {
+      "schema": "ethos",
+      "table": "AuditLog",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Charge",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Contract",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ContractVersion",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Document",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "ExternalIdentity",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Inspection",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "InspectionReport",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Installment",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Lease",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseRenewal",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "LeaseTenant",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MaintenanceRequest",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "MembershipRole",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Notification",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Organization",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationMembership",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "OrganizationSettings",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Owner",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Payment",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PaymentAllocation",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Permission",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Photo",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAccessGrant",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PlatformAuditLog",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Property",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyOwnership",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "PropertyUnit",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Receipt",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RentAdjustment",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Role",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "RolePermission",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "Tenant",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos",
+      "table": "User",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthActionToken",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthCredential",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthEvent",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthMailOutbox",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthRecoveryCode",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthRefreshToken",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthSession",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_identity",
+      "table": "AuthThrottle",
+      "enabled": true,
+      "forced": true,
+      "delete": false
+    },
+    {
+      "schema": "ethos_technical",
+      "table": "_prisma_migrations",
+      "enabled": false,
+      "forced": false,
+      "delete": false
+    },
+    {
+      "schema": "ethos_technical",
+      "table": "infrastructure_checks",
+      "enabled": false,
+      "forced": false,
+      "delete": false
+    }
+  ],
+  "sqlHashes": {
+    "../prisma/migrations/20261024000000_mutation_consistency/migration.sql": "bcfe1a072f137f6bb10f8cebe39a000ff590b032826d1d97299838093eedfdf6",
+    "./propose-consistency-runtime.sql": "2ab9ea2e98a10b093df2f84523d5c4f4dd876d2097b2087d457621bbe8984c8f",
+    "./propose-business-runtime.sql": "bf190ef6241b9be22ac68690db53ab272f1b88c5d24a334937523d2350a6aae0"
+  }
+}

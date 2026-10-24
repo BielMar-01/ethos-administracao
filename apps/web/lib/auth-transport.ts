@@ -1,18 +1,6 @@
-export function apiOrigin() {
-  const origin = process.env.ETHOS_API_ORIGIN ?? "http://127.0.0.1:3333";
-  const parsed = new URL(origin);
-  if (
-    parsed.origin !== origin ||
-    parsed.username ||
-    parsed.password ||
-    (!["127.0.0.1", "localhost"].includes(parsed.hostname) &&
-      parsed.protocol !== "https:")
-  )
-    throw new Error("INVALID_API_ORIGIN");
-  return origin;
-}
-export const webOrigin = () =>
-  process.env.ETHOS_WEB_ORIGIN ?? "http://localhost:3000";
+import { webConfiguration } from "./environment";
+export const apiOrigin = () => webConfiguration().api;
+export const webOrigin = () => webConfiguration().web;
 const names = new Set([
   "ethos_access",
   "ethos_refresh",

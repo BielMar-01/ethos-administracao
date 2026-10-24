@@ -23,6 +23,14 @@ const context = await browser.newContext(),
   page = await context.newPage();
 const errors = [],
   passed = [];
+const authResponses = [];
+page.on("response", (response) => {
+  const path = new URL(response.url()).pathname;
+  if (path.startsWith("/api/auth/")) {
+    authResponses.push({ path, status: response.status() });
+    if (authResponses.length > 60) authResponses.shift();
+  }
+});
 page.on("pageerror", (error) => errors.push(error.message));
 const screenshot = join(tmpdir(), "ethos-auth-login-mobile.png");
 async function noOverflow() {
@@ -253,6 +261,25 @@ try {
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(JSON.stringify({ ...report, screenshot }, null, 2));
+} catch (error) {
+  writeFileSync(
+    new URL(
+      "../../../docs/etapa-0.11.1-auth-browser-failure.json",
+      import.meta.url,
+    ),
+    JSON.stringify(
+      {
+        isolated: true,
+        failed: true,
+        code: error.name,
+        checksCompleted: passed,
+        authResponses,
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+  throw error;
 } finally {
   await browser.close();
 }

@@ -39,6 +39,10 @@ const dependencies = {
 for (const [email, role] of [
   ["browser-admin@example.invalid", "ADMIN_ORGANIZACAO"],
   ["browser-tenant@example.invalid", "INQUILINO"],
+  ["browser-manager@example.invalid", "GESTOR"],
+  ["browser-finance@example.invalid", "FINANCEIRO"],
+  ["browser-owner@example.invalid", "PROPRIETARIO"],
+  ["browser-super@example.invalid", "SUPER_ADMIN"],
 ]) {
   let user = await admin.prisma.user.findUnique({ where: { email } });
   if (!user) {
@@ -66,6 +70,21 @@ for (const [email, role] of [
     where: { userId: user.id, revokedAt: null },
     data: { revokedAt: new Date() },
   });
+  if (role === "SUPER_ADMIN") {
+    if (
+      !(await admin.prisma.platformAccessGrant.findFirst({
+        where: { userId: user.id, role: "SUPER_ADMIN", revokedAt: null },
+      }))
+    )
+      await admin.prisma.platformAccessGrant.create({
+        data: {
+          userId: user.id,
+          role: "SUPER_ADMIN",
+          reason: "Isolated browser role fixture",
+        },
+      });
+    continue;
+  }
   for (const slug of ["browser-org-a", "browser-org-b"]) {
     const org = await admin.prisma.organization.upsert({
       where: { slug },

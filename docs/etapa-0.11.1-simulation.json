@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-24T11:23:45.152Z",
+  "isolated": true,
+  "sourceConnection": false,
+  "sourceWrites": false,
+  "migrationApplied": "20261024000000_mutation_consistency",
+  "sqlSha256": "2ab9ea2e98a10b093df2f84523d5c4f4dd876d2097b2087d457621bbe8984c8f",
+  "preexistingApplicationDataPreserved": true,
+  "preexistingBusinessColumnAndTableGrantsPreserved": true,
+  "runtimeFlagsRestricted": true
+}
