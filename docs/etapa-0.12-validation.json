@@ -43,7 +43,14 @@
     "deploymentWorkflow": false,
     "firstRun": 40094492615,
     "firstRunOutcome": "failed: error precedence in administrative-credential rejection; role guard reordered before schema gate",
-    "remoteRun": "verify corrective commit after authorized push"
+    "remoteRun": {
+      "id": 40094766768,
+      "commit": "7ac62820640f97aedb60f89fdfbfa3cbeaef6ce7",
+      "url": "https://github.com/BielMar-01/ethos-administracao/actions/runs/40094766768",
+      "conclusion": "success",
+      "runner": "ubuntu-24.04",
+      "scope": "all quality steps including integration, browser, Docker build and image boundaries"
+    }
   },
   "limitations": [
     "Previous intermittent MFA failure remains unexplained despite passing isolated suites",

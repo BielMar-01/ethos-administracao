@@ -140,8 +140,13 @@ Os dois bloqueavam a credencial administrativa. Corrigida a ordem dos hooks:
 validar papel primeiro, contrato de schema depois, ambos antes de escutar. Não se
 ampliou a regex do teste nem se removeu a verificação. O prazo do harness também
 passou a usar deadline de relógio, incluindo o tempo dos probes.
-Conferir a execução do commit corretivo no GitHub antes de considerar o check
-remoto aprovado. Branch protection não foi alterada.
+CI corretivo aprovado: [40094766768](https://github.com/BielMar-01/ethos-administracao/actions/runs/40094766768),
+commit `7ac62820640f97aedb60f89fdfbfa3cbeaef6ce7`, conclusão success. Instalação,
+scan, audit, Prisma, build, lint, types, unitários, integração, Chromium, Docker e
+smoke da imagem passaram no runner Ubuntu24.04. Nenhum deploy ocorreu.
+Branch protection não foi alterada. Container local descartável removido após
+conferir ID; demais containers não foram modificados. Preparação publicada em
+`670caaf823ee0ab3a2fdf39b6ead8523644e2f39` e correção em `7ac6282`, sem force push.
 
 ## Checklist para futura publicação
 
