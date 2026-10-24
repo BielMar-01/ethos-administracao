@@ -227,10 +227,10 @@ export async function buildApp(
   );
 
   if (options.auth) {
+    const auth = await registerAuth(app, options.auth);
     app.addHook("onReady", async () => {
       await checkRuntimeSchema(options.auth!);
     });
-    const auth = await registerAuth(app, options.auth);
     await registerBusiness(app, options.auth, auth);
     let maintenance: Promise<void> | undefined;
     let lastCleanup = 0;

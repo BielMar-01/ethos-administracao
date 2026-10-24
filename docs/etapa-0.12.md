@@ -132,9 +132,16 @@ manual nos tipos de negócio para mascarar o erro de geração.
 Os três testes Linux também passaram dentro da imagem runtime final, com filesystem
 somente leitura, cap-drop ALL e no-new-privileges, usando apenas o banco descartável.
 
-Workflow será disparado pelo push autorizado; conferir a execução associada ao
-commit no GitHub antes de considerar o check remoto aprovado. Resultados locais
-não são apresentados como execução remota. Branch protection não foi alterada.
+Primeiro CI real: [40094492615](https://github.com/BielMar-01/ethos-administracao/actions/runs/40094492615),
+commit670caaf, passou instalação, scan, audit, Prisma, builds, lint, tipos e unitários;
+falhou na integração porque a nova verificação de identidade antecipou o erro do
+guard de papel existente (RUNTIME_SCHEMA_UNSAFE em vez de UNSAFE_AUTH_DATABASE_ROLE).
+Os dois bloqueavam a credencial administrativa. Corrigida a ordem dos hooks:
+validar papel primeiro, contrato de schema depois, ambos antes de escutar. Não se
+ampliou a regex do teste nem se removeu a verificação. O prazo do harness também
+passou a usar deadline de relógio, incluindo o tempo dos probes.
+Conferir a execução do commit corretivo no GitHub antes de considerar o check
+remoto aprovado. Branch protection não foi alterada.
 
 ## Checklist para futura publicação
 

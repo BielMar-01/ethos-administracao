@@ -16,7 +16,12 @@ await new Promise((resolve) => bridge.listen(55439, "127.0.0.1", resolve));
 try {
   const child = spawn(
     process.execPath,
-    ["--test", "tests/infrastructure.integration.mjs"],
+    [
+      "--test",
+      process.argv.includes("--auth")
+        ? "tests/auth.integration.mjs"
+        : "tests/infrastructure.integration.mjs",
+    ],
     {
       cwd: new URL("../apps/api/", import.meta.url),
       stdio: "inherit",

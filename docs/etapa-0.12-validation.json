@@ -41,7 +41,9 @@
     "actionRefsPinned": true,
     "contentsReadOnly": true,
     "deploymentWorkflow": false,
-    "remoteRun": "verify after authorized push"
+    "firstRun": 40094492615,
+    "firstRunOutcome": "failed: error precedence in administrative-credential rejection; role guard reordered before schema gate",
+    "remoteRun": "verify corrective commit after authorized push"
   },
   "limitations": [
     "Previous intermittent MFA failure remains unexplained despite passing isolated suites",

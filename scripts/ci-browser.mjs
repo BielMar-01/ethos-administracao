@@ -46,10 +46,21 @@ const launch = (file, args, cwd) =>
     stdio: ["ignore", "pipe", "pipe"],
   });
 async function ready(url, child) {
-  for (let i = 0; i < 300; i++) {
-    if (child.exitCode !== null || child.signalCode !== null) throw Error("TEST_SERVER_EXITED");
+  const deadline = Date.now() + 60_000;
+  while (Date.now() < deadline) {
+    if (child.exitCode !== null || child.signalCode !== null)
+      throw Error("TEST_SERVER_EXITED");
     try {
-      if ((await fetch(url, { signal: AbortSignal.timeout(3000) })).ok) return;
+      if (
+        (
+          await fetch(url, {
+            signal: AbortSignal.timeout(
+              Math.min(3000, Math.max(1, deadline - Date.now())),
+            ),
+          })
+        ).ok
+      )
+        return;
     } catch {
       /* bounded startup wait */
     }
